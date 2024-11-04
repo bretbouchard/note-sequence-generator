@@ -1,0 +1,3298 @@
+[
+    {
+        "name": "Minor Scale Ascension",
+        "chords": [
+            {
+                "degree": "i",
+                "scale_degree": "1",
+                "chord_notes_degree": [
+                    "1",
+                    "b3",
+                    "5"
+                ],
+                "id": "bc53ef30-ee1d-4030-8773-5f02971eb15b"
+            },
+            {
+                "degree": "ii",
+                "scale_degree": "2",
+                "chord_notes_degree": [
+                    "2",
+                    "4",
+                    "b6"
+                ],
+                "id": "36d440ad-4a55-49e6-9dd2-239037ad2528"
+            },
+            {
+                "degree": "III",
+                "scale_degree": "3",
+                "chord_notes_degree": [
+                    "3",
+                    "5",
+                    "7"
+                ],
+                "id": "d5ce83d1-de05-41ea-85a7-0f93148d7596"
+            },
+            {
+                "degree": "iv",
+                "scale_degree": "4",
+                "chord_notes_degree": [
+                    "4",
+                    "b6",
+                    "1"
+                ],
+                "id": "92f11676-2db4-4f15-a562-0e595e049e3d"
+            },
+            {
+                "degree": "v",
+                "scale_degree": "5",
+                "chord_notes_degree": [
+                    "5",
+                    "7",
+                    "2"
+                ],
+                "id": "f329687f-f5dc-4067-a933-72b791f7057b"
+            },
+            {
+                "degree": "VI",
+                "scale_degree": "6",
+                "chord_notes_degree": [
+                    "b6",
+                    "1",
+                    "3"
+                ],
+                "id": "a9605435-3e56-40fc-a140-f94df055228a"
+            },
+            {
+                "degree": "VII",
+                "scale_degree": "7",
+                "chord_notes_degree": [
+                    "7",
+                    "2",
+                    "4"
+                ],
+                "id": "a769cead-601c-4afa-bed9-be03bb9a30ab"
+            }
+        ],
+        "id": "b9ab9019-cc8f-4db7-aae1-a2b0d8ddf4bc"
+    },
+    {
+        "name": "II-V-I in C Major",
+        "chords": [
+            {
+                "degree": "ii7",
+                "scale_degree": "2",
+                "chord_notes_degree": [
+                    "2",
+                    "4",
+                    "6",
+                    "1"
+                ],
+                "id": "1974920c-fdb8-4c73-8ab4-b18abe66eba9"
+            },
+            {
+                "degree": "V7",
+                "scale_degree": "5",
+                "chord_notes_degree": [
+                    "5",
+                    "7",
+                    "2",
+                    "4"
+                ],
+                "id": "12ab992c-0954-48ff-88bd-f2ca4f8dc4aa"
+            },
+            {
+                "degree": "Imaj7",
+                "scale_degree": "1",
+                "chord_notes_degree": [
+                    "1",
+                    "3",
+                    "5",
+                    "7"
+                ],
+                "id": "acbc33b5-7d71-4897-a98e-379cb8be219e"
+            }
+        ],
+        "id": "42d18dd3-6a5f-4e51-8ddd-19efa9b73505"
+    },
+    {
+        "name": "II-V-I in G Major",
+        "chords": [
+            {
+                "degree": "ii7",
+                "scale_degree": "2",
+                "chord_notes_degree": [
+                    "2",
+                    "4",
+                    "6",
+                    "1"
+                ],
+                "id": "bd8b97e7-796d-426d-97f9-8bdb2200fa03"
+            },
+            {
+                "degree": "V7",
+                "scale_degree": "5",
+                "chord_notes_degree": [
+                    "5",
+                    "7",
+                    "2",
+                    "4"
+                ],
+                "id": "7cf7472c-6c47-4db9-8c09-a81a0b6d6e18"
+            },
+            {
+                "degree": "Imaj7",
+                "scale_degree": "1",
+                "chord_notes_degree": [
+                    "1",
+                    "3",
+                    "5",
+                    "7"
+                ],
+                "id": "c4187e52-fc81-490f-b214-335185d89093"
+            }
+        ],
+        "id": "1ab94e5d-9710-49ca-9ba1-1dfa7b9d1015"
+    },
+    {
+        "name": "I-VI-II-V",
+        "chords": [
+            {
+                "degree": "Imaj7",
+                "scale_degree": "1",
+                "chord_notes_degree": [
+                    "1",
+                    "3",
+                    "5",
+                    "7"
+                ],
+                "id": "03a9e9ac-88f0-461b-91e8-e872c5d66282"
+            },
+            {
+                "degree": "vi7",
+                "scale_degree": "6",
+                "chord_notes_degree": [
+                    "6",
+                    "1",
+                    "3",
+                    "5"
+                ],
+                "id": "d9bec53c-7044-416f-8ebe-48fb75763720"
+            },
+            {
+                "degree": "ii7",
+                "scale_degree": "2",
+                "chord_notes_degree": [
+                    "2",
+                    "4",
+                    "6",
+                    "1"
+                ],
+                "id": "894c8996-153f-4dbb-830a-f991d5485bcb"
+            },
+            {
+                "degree": "V7",
+                "scale_degree": "5",
+                "chord_notes_degree": [
+                    "5",
+                    "7",
+                    "2",
+                    "4"
+                ],
+                "id": "93de3c0b-ca43-423c-b380-2f5534566006"
+            }
+        ],
+        "id": "d5f4bfe8-988f-4b91-80eb-9fea6a58b9fb"
+    },
+    {
+        "name": "Rhythm Changes",
+        "chords": [
+            {
+                "degree": "Imaj7",
+                "scale_degree": "1",
+                "chord_notes_degree": [
+                    "1",
+                    "3",
+                    "5",
+                    "7"
+                ],
+                "id": "dc6e364f-23f4-4c9c-b774-151c5bda2442"
+            },
+            {
+                "degree": "VI7",
+                "scale_degree": "6",
+                "chord_notes_degree": [
+                    "6",
+                    "1",
+                    "3",
+                    "5"
+                ],
+                "id": "6e4816db-7d19-46e4-96a7-6ec55190e256"
+            },
+            {
+                "degree": "ii7",
+                "scale_degree": "2",
+                "chord_notes_degree": [
+                    "2",
+                    "4",
+                    "6",
+                    "1"
+                ],
+                "id": "7b4bb3bf-658d-46e0-ada2-d5b863a27377"
+            },
+            {
+                "degree": "V7",
+                "scale_degree": "5",
+                "chord_notes_degree": [
+                    "5",
+                    "7",
+                    "2",
+                    "4"
+                ],
+                "id": "c62ae033-0691-43c6-a1a2-b6342fd8af42"
+            },
+            {
+                "degree": "Imaj7",
+                "scale_degree": "1",
+                "chord_notes_degree": [
+                    "1",
+                    "3",
+                    "5",
+                    "7"
+                ],
+                "id": "e5315246-b4ab-4b16-98b6-477d6cc3711a"
+            },
+            {
+                "degree": "VI7",
+                "scale_degree": "6",
+                "chord_notes_degree": [
+                    "6",
+                    "1",
+                    "3",
+                    "5"
+                ],
+                "id": "f76d91cd-b0f5-47d4-80b8-20e6cda46450"
+            },
+            {
+                "degree": "ii7",
+                "scale_degree": "2",
+                "chord_notes_degree": [
+                    "2",
+                    "4",
+                    "6",
+                    "1"
+                ],
+                "id": "c465cc89-7de1-4b15-b8e8-ef10e38b403d"
+            },
+            {
+                "degree": "V7",
+                "scale_degree": "5",
+                "chord_notes_degree": [
+                    "5",
+                    "7",
+                    "2",
+                    "4"
+                ],
+                "id": "d6374bf0-db48-4b33-a5e2-c3a51420207d"
+            }
+        ],
+        "id": "14443a20-09c8-4e51-a5b1-55be1bc172b1"
+    },
+    {
+        "name": "Jazz Blues in F",
+        "chords": [
+            {
+                "degree": "I7",
+                "scale_degree": "1",
+                "chord_notes_degree": [
+                    "1",
+                    "3",
+                    "5",
+                    "b7"
+                ],
+                "id": "58ca7a55-005e-4d1c-abb8-a1dd4eeb789a"
+            },
+            {
+                "degree": "IV7",
+                "scale_degree": "4",
+                "chord_notes_degree": [
+                    "4",
+                    "6",
+                    "1",
+                    "b3"
+                ],
+                "id": "f303113c-de23-4ad6-9e27-d336d7b39733"
+            },
+            {
+                "degree": "I7",
+                "scale_degree": "1",
+                "chord_notes_degree": [
+                    "1",
+                    "3",
+                    "5",
+                    "b7"
+                ],
+                "id": "5c18803f-4b49-4632-9a72-e1e7c0c6426e"
+            },
+            {
+                "degree": "V7",
+                "scale_degree": "5",
+                "chord_notes_degree": [
+                    "5",
+                    "7",
+                    "2",
+                    "4"
+                ],
+                "id": "da3e8655-f5b2-469c-bac4-a4619e1bcfd7"
+            },
+            {
+                "degree": "IV7",
+                "scale_degree": "4",
+                "chord_notes_degree": [
+                    "4",
+                    "6",
+                    "1",
+                    "b3"
+                ],
+                "id": "6a4cee14-8b6c-4fbc-bbf4-d9eb856f8302"
+            },
+            {
+                "degree": "I7",
+                "scale_degree": "1",
+                "chord_notes_degree": [
+                    "1",
+                    "3",
+                    "5",
+                    "b7"
+                ],
+                "id": "9f688925-b207-4c03-8c25-9a5f37ef6c24"
+            }
+        ],
+        "id": "fd154bd5-6fba-4402-b54d-6b01d18b4b58"
+    },
+    {
+        "name": "Minor II-V-I",
+        "chords": [
+            {
+                "degree": "ii\u00f87",
+                "scale_degree": "2",
+                "chord_notes_degree": [
+                    "2",
+                    "4",
+                    "b6",
+                    "1"
+                ],
+                "id": "54de5c20-ad07-4358-a949-9d86c49c1d9c"
+            },
+            {
+                "degree": "V7b9",
+                "scale_degree": "5",
+                "chord_notes_degree": [
+                    "5",
+                    "7",
+                    "2",
+                    "4",
+                    "b6"
+                ],
+                "id": "efa6ec39-23d5-469b-aaed-ea94223e3dc7"
+            },
+            {
+                "degree": "i7",
+                "scale_degree": "1",
+                "chord_notes_degree": [
+                    "1",
+                    "b3",
+                    "5",
+                    "b7"
+                ],
+                "id": "04099df7-2822-4611-b391-8461b9416c2c"
+            }
+        ],
+        "id": "b0f5cd84-40e3-4e20-a6eb-53f344bedefb"
+    },
+    {
+        "name": "Coltrane Changes",
+        "chords": [
+            {
+                "degree": "Imaj7",
+                "scale_degree": "1",
+                "chord_notes_degree": [
+                    "1",
+                    "3",
+                    "5",
+                    "7"
+                ],
+                "id": "de2c8c7c-0500-4cf4-adad-b2e48b77cf8b"
+            },
+            {
+                "degree": "",
+                "scale_degree": "",
+                "chord_notes_degree": [
+                    "b3",
+                    "5",
+                    "b7",
+                    "2"
+                ],
+                "id": "9bacaa7c-b43c-4bd7-8e82-c95d59737b8f"
+            },
+            {
+                "degree": "",
+                "scale_degree": "",
+                "chord_notes_degree": [
+                    "b6",
+                    "1",
+                    "b3",
+                    "5"
+                ],
+                "id": "784d67a3-d76f-4add-b805-03671797a63f"
+            },
+            {
+                "degree": "",
+                "scale_degree": "",
+                "chord_notes_degree": [
+                    "#5",
+                    "7",
+                    "2",
+                    "4"
+                ],
+                "id": "0991c249-f3ea-4d32-abc8-bf5c4c2e7daa"
+            },
+            {
+                "degree": "",
+                "scale_degree": "",
+                "chord_notes_degree": [
+                    "3",
+                    "#5",
+                    "7",
+                    "2"
+                ],
+                "id": "d4a5214f-7b17-4e78-a5fd-33ee1e21827b"
+            },
+            {
+                "degree": "",
+                "scale_degree": "",
+                "chord_notes_degree": [
+                    "5",
+                    "7",
+                    "2",
+                    "4"
+                ],
+                "id": "ef38a42d-ec45-46f8-ae6c-02511b7b53aa"
+            },
+            {
+                "degree": "Imaj7",
+                "scale_degree": "1",
+                "chord_notes_degree": [
+                    "1",
+                    "3",
+                    "5",
+                    "7"
+                ],
+                "id": "4a13622d-d0d0-4c7b-b04b-95e1b5fb851c"
+            }
+        ],
+        "id": "0ac14c0c-cc77-4fdb-ae61-6174941e4778"
+    },
+    {
+        "name": "Descending II-Vs",
+        "chords": [
+            {
+                "degree": "ii7",
+                "scale_degree": "2",
+                "chord_notes_degree": [
+                    "2",
+                    "4",
+                    "6",
+                    "1"
+                ],
+                "id": "113364c8-ede8-4f92-80d8-560575385747"
+            },
+            {
+                "degree": "V7",
+                "scale_degree": "5",
+                "chord_notes_degree": [
+                    "5",
+                    "7",
+                    "2",
+                    "4"
+                ],
+                "id": "96443e5a-7853-4af5-8883-010d0e4991d7"
+            },
+            {
+                "degree": "ii7",
+                "scale_degree": "2",
+                "chord_notes_degree": [
+                    "2",
+                    "b4",
+                    "6",
+                    "1"
+                ],
+                "id": "d7ad305b-23f0-4d1c-bbab-64c6d369b0fc"
+            },
+            {
+                "degree": "V7",
+                "scale_degree": "5",
+                "chord_notes_degree": [
+                    "5",
+                    "7",
+                    "2",
+                    "4"
+                ],
+                "id": "7f18d5a9-193c-4b24-9c29-89e54efc889e"
+            },
+            {
+                "degree": "ii7",
+                "scale_degree": "2",
+                "chord_notes_degree": [
+                    "2",
+                    "b4",
+                    "6",
+                    "1"
+                ],
+                "id": "798dad27-59f3-4924-8776-646471bec0a8"
+            },
+            {
+                "degree": "V7",
+                "scale_degree": "5",
+                "chord_notes_degree": [
+                    "5",
+                    "7",
+                    "2",
+                    "4"
+                ],
+                "id": "2875dc5c-7db7-4477-83ff-d60213c67ed9"
+            },
+            {
+                "degree": "Imaj7",
+                "scale_degree": "1",
+                "chord_notes_degree": [
+                    "1",
+                    "3",
+                    "5",
+                    "7"
+                ],
+                "id": "282f6029-f465-4275-894d-910c8fd30ee0"
+            }
+        ],
+        "id": "08777587-20f1-47cd-a483-a921280f45bd"
+    },
+    {
+        "name": "Extended Turnaround",
+        "chords": [
+            {
+                "degree": "Imaj7",
+                "scale_degree": "1",
+                "chord_notes_degree": [
+                    "1",
+                    "3",
+                    "5",
+                    "7"
+                ],
+                "id": "ab58ac5e-74e2-42cd-93f6-1f039c48bcac"
+            },
+            {
+                "degree": "VI7",
+                "scale_degree": "6",
+                "chord_notes_degree": [
+                    "6",
+                    "b2",
+                    "4",
+                    "6"
+                ],
+                "id": "7b9d257f-a118-4d7a-9ff5-6a7e9814ee51"
+            },
+            {
+                "degree": "ii7",
+                "scale_degree": "2",
+                "chord_notes_degree": [
+                    "2",
+                    "4",
+                    "6",
+                    "1"
+                ],
+                "id": "593c2fd8-9d18-4f19-aa47-6baed8eca8c0"
+            },
+            {
+                "degree": "V7",
+                "scale_degree": "5",
+                "chord_notes_degree": [
+                    "5",
+                    "7",
+                    "2",
+                    "4"
+                ],
+                "id": "58509d81-8cec-44f6-9f71-5e072ea44261"
+            },
+            {
+                "degree": "III7",
+                "scale_degree": "3",
+                "chord_notes_degree": [
+                    "3",
+                    "#5",
+                    "7",
+                    "2"
+                ],
+                "id": "2efeb809-28c0-4d4c-bbcc-770313f217ee"
+            },
+            {
+                "degree": "vi7",
+                "scale_degree": "6",
+                "chord_notes_degree": [
+                    "6",
+                    "1",
+                    "3",
+                    "5"
+                ],
+                "id": "758af2f4-3001-4477-ad4e-3a3c80de4b92"
+            },
+            {
+                "degree": "II7",
+                "scale_degree": "2",
+                "chord_notes_degree": [
+                    "2",
+                    "4",
+                    "6",
+                    "1"
+                ],
+                "id": "8c3cc2c3-bc6e-4891-9af0-a64bd2f28c98"
+            },
+            {
+                "degree": "V7",
+                "scale_degree": "5",
+                "chord_notes_degree": [
+                    "5",
+                    "7",
+                    "2",
+                    "4"
+                ],
+                "id": "57fa46e4-07a7-4ab4-9b8a-2c24aed65de9"
+            }
+        ],
+        "id": "20ca5eee-a90d-4588-885d-ce6453456ba7"
+    },
+    {
+        "name": "Cycle of Fifths",
+        "chords": [
+            {
+                "degree": "Imaj7",
+                "scale_degree": "1",
+                "chord_notes_degree": [
+                    "1",
+                    "3",
+                    "5",
+                    "7"
+                ],
+                "id": "bcf0cd72-ed2b-4f1c-af4c-42f7c3da02e1"
+            },
+            {
+                "degree": "IV7",
+                "scale_degree": "4",
+                "chord_notes_degree": [
+                    "4",
+                    "6",
+                    "1",
+                    "b3"
+                ],
+                "id": "185a766f-0aa3-49f3-9b04-e9f823c0498b"
+            },
+            {
+                "degree": "bVIImaj7",
+                "scale_degree": "b7",
+                "chord_notes_degree": [
+                    "b7",
+                    "2",
+                    "4",
+                    "6"
+                ],
+                "id": "aa332295-1e94-49bb-b2a1-a31f5a502c34"
+            },
+            {
+                "degree": "",
+                "scale_degree": "",
+                "chord_notes_degree": [
+                    "b3",
+                    "5",
+                    "b7",
+                    "2"
+                ],
+                "id": "1e47dcfe-174e-4d40-aaa7-6d6ea8489131"
+            },
+            {
+                "degree": "",
+                "scale_degree": "",
+                "chord_notes_degree": [
+                    "b6",
+                    "1",
+                    "b3",
+                    "5"
+                ],
+                "id": "b5f234d7-3bb5-4ace-aa84-ce9bf342b84c"
+            },
+            {
+                "degree": "",
+                "scale_degree": "",
+                "chord_notes_degree": [
+                    "2",
+                    "4",
+                    "b6",
+                    "1"
+                ],
+                "id": "3c07e793-6062-4e48-aa26-e5d35f3f29f2"
+            },
+            {
+                "degree": "",
+                "scale_degree": "",
+                "chord_notes_degree": [
+                    "4",
+                    "6",
+                    "1",
+                    "3"
+                ],
+                "id": "1c74202c-0d7f-4bde-addd-55119df95488"
+            },
+            {
+                "degree": "",
+                "scale_degree": "",
+                "chord_notes_degree": [
+                    "7",
+                    "b2",
+                    "4",
+                    "6"
+                ],
+                "id": "59241747-ef80-4ac5-b483-32f5a8f49076"
+            },
+            {
+                "degree": "",
+                "scale_degree": "",
+                "chord_notes_degree": [
+                    "3",
+                    "#5",
+                    "7",
+                    "2"
+                ],
+                "id": "5f650e85-919d-4f30-9133-2783d2e595d2"
+            },
+            {
+                "degree": "",
+                "scale_degree": "",
+                "chord_notes_degree": [
+                    "6",
+                    "1",
+                    "3",
+                    "5"
+                ],
+                "id": "176b6c7b-066b-43e1-8230-94fa997f65d4"
+            },
+            {
+                "degree": "",
+                "scale_degree": "",
+                "chord_notes_degree": [
+                    "2",
+                    "4",
+                    "6",
+                    "1"
+                ],
+                "id": "4c1a6f57-4771-47be-b68d-61824291a30c"
+            },
+            {
+                "degree": "",
+                "scale_degree": "",
+                "chord_notes_degree": [
+                    "5",
+                    "7",
+                    "2",
+                    "4"
+                ],
+                "id": "c1caa6d5-8451-4a66-a59c-d2672bc2a076"
+            }
+        ],
+        "id": "5ec3adbc-c166-43a8-b9d5-c6d5121fa125"
+    },
+    {
+        "name": "Minor Blues in C",
+        "chords": [
+            {
+                "degree": "i7",
+                "scale_degree": "1",
+                "chord_notes_degree": [
+                    "1",
+                    "b3",
+                    "5",
+                    "b7"
+                ],
+                "id": "9aa491a0-849c-4b99-9fc0-4605c9e43b03"
+            },
+            {
+                "degree": "iv7",
+                "scale_degree": "4",
+                "chord_notes_degree": [
+                    "4",
+                    "b6",
+                    "1",
+                    "b3"
+                ],
+                "id": "b7d8664f-fd62-47ca-a717-313fb12fff18"
+            },
+            {
+                "degree": "i7",
+                "scale_degree": "1",
+                "chord_notes_degree": [
+                    "1",
+                    "b3",
+                    "5",
+                    "b7"
+                ],
+                "id": "ed3954e4-910b-4bf8-871f-83145ea026c8"
+            },
+            {
+                "degree": "V7#5",
+                "scale_degree": "5",
+                "chord_notes_degree": [
+                    "5",
+                    "7",
+                    "#2",
+                    "4"
+                ],
+                "id": "ed9007d0-977d-4d29-874c-5dd3eea8fe65"
+            },
+            {
+                "degree": "iv7",
+                "scale_degree": "4",
+                "chord_notes_degree": [
+                    "4",
+                    "b6",
+                    "1",
+                    "b3"
+                ],
+                "id": "778d82ee-01e9-46c9-9412-263527e2d279"
+            },
+            {
+                "degree": "i7",
+                "scale_degree": "1",
+                "chord_notes_degree": [
+                    "1",
+                    "b3",
+                    "5",
+                    "b7"
+                ],
+                "id": "590dc561-e236-4bcf-b416-bdb9ca0f8f8d"
+            }
+        ],
+        "id": "88cf7882-dda7-4d71-95a3-480b1a83f6eb"
+    },
+    {
+        "name": "Backdoor Progression",
+        "chords": [
+            {
+                "degree": "Imaj7",
+                "scale_degree": "1",
+                "chord_notes_degree": [
+                    "1",
+                    "3",
+                    "5",
+                    "7"
+                ],
+                "id": "ad277643-299d-4c39-9cad-0fcf26c28757"
+            },
+            {
+                "degree": "bVII7",
+                "scale_degree": "b7",
+                "chord_notes_degree": [
+                    "b7",
+                    "2",
+                    "4",
+                    "b6"
+                ],
+                "id": "cf005a69-b98c-4705-b05f-f8679d34d87f"
+            },
+            {
+                "degree": "Imaj7",
+                "scale_degree": "1",
+                "chord_notes_degree": [
+                    "1",
+                    "3",
+                    "5",
+                    "7"
+                ],
+                "id": "297e2af3-beb6-4629-9d3d-14cc76358ab3"
+            }
+        ],
+        "id": "9cf0134d-6e49-48e0-8012-97e2d8889dc3"
+    },
+    {
+        "name": "III-VI-II-V",
+        "chords": [
+            {
+                "degree": "iii7",
+                "scale_degree": "3",
+                "chord_notes_degree": [
+                    "3",
+                    "5",
+                    "7",
+                    "2"
+                ],
+                "id": "90f92f11-aed7-496f-9119-f9afafe913b9"
+            },
+            {
+                "degree": "VI7",
+                "scale_degree": "6",
+                "chord_notes_degree": [
+                    "6",
+                    "1",
+                    "3",
+                    "5"
+                ],
+                "id": "8ccb6407-43c6-41d9-9702-86870e1287e4"
+            },
+            {
+                "degree": "ii7",
+                "scale_degree": "2",
+                "chord_notes_degree": [
+                    "2",
+                    "4",
+                    "6",
+                    "1"
+                ],
+                "id": "c937a0b3-471b-426c-b817-95d0bf03cdec"
+            },
+            {
+                "degree": "V7",
+                "scale_degree": "5",
+                "chord_notes_degree": [
+                    "5",
+                    "7",
+                    "2",
+                    "4"
+                ],
+                "id": "81b895e2-5ec0-45b7-890f-d4da0ef61634"
+            }
+        ],
+        "id": "26375ba4-3cf5-4aec-9b4e-7b26cc8204f2"
+    },
+    {
+        "name": "Tritone Substitution",
+        "chords": [
+            {
+                "degree": "ii7",
+                "scale_degree": "2",
+                "chord_notes_degree": [
+                    "2",
+                    "4",
+                    "6",
+                    "1"
+                ],
+                "id": "46ec71dc-8631-44b8-89f1-9fb9083fc9c5"
+            },
+            {
+                "degree": "bII7",
+                "scale_degree": "b2",
+                "chord_notes_degree": [
+                    "b2",
+                    "4",
+                    "b6",
+                    "b1"
+                ],
+                "id": "177ede99-5479-4b04-920d-56f475f5536e"
+            },
+            {
+                "degree": "Imaj7",
+                "scale_degree": "1",
+                "chord_notes_degree": [
+                    "1",
+                    "3",
+                    "5",
+                    "7"
+                ],
+                "id": "9c35aff9-4521-4512-b291-7f2baf8d9699"
+            }
+        ],
+        "id": "5b2c3e62-ae9d-4b5e-ace8-391fd6ebfc8f"
+    },
+    {
+        "name": "Modal Interchange",
+        "chords": [
+            {
+                "degree": "Imaj7",
+                "scale_degree": "1",
+                "chord_notes_degree": [
+                    "1",
+                    "3",
+                    "5",
+                    "7"
+                ],
+                "id": "84f2ff37-9805-40ca-a32e-23462f97e9d5"
+            },
+            {
+                "degree": "bIIImaj7",
+                "scale_degree": "b3",
+                "chord_notes_degree": [
+                    "b3",
+                    "5",
+                    "b7",
+                    "2"
+                ],
+                "id": "43a055ae-41d5-4aea-bb76-b5fea8406855"
+            },
+            {
+                "degree": "iv7",
+                "scale_degree": "4",
+                "chord_notes_degree": [
+                    "4",
+                    "b6",
+                    "1",
+                    "b3"
+                ],
+                "id": "df25a75d-1379-49af-825f-478535712dcc"
+            },
+            {
+                "degree": "bVII7",
+                "scale_degree": "b7",
+                "chord_notes_degree": [
+                    "b7",
+                    "2",
+                    "4",
+                    "b6"
+                ],
+                "id": "4256cd6a-590f-479b-b808-9641c78e324f"
+            },
+            {
+                "degree": "Imaj7",
+                "scale_degree": "1",
+                "chord_notes_degree": [
+                    "1",
+                    "3",
+                    "5",
+                    "7"
+                ],
+                "id": "96dc504e-5086-40a0-b59c-a2c9d866fec6"
+            }
+        ],
+        "id": "b66ecef9-d528-423c-bec2-a4ef2500ee21"
+    },
+    {
+        "name": "Stepwise Descending Bass",
+        "chords": [
+            {
+                "degree": "Imaj7",
+                "scale_degree": "1",
+                "chord_notes_degree": [
+                    "1",
+                    "3",
+                    "5",
+                    "7"
+                ],
+                "id": "05594eb5-6b04-47d6-9825-0fc90b0b0828"
+            },
+            {
+                "degree": "VII7",
+                "scale_degree": "7",
+                "chord_notes_degree": [
+                    "7",
+                    "#2",
+                    "4",
+                    "6"
+                ],
+                "id": "1cf3cc23-f29d-4ba4-af34-8662e9e4a202"
+            },
+            {
+                "degree": "bVII7",
+                "scale_degree": "b7",
+                "chord_notes_degree": [
+                    "b7",
+                    "2",
+                    "4",
+                    "b6"
+                ],
+                "id": "8cebcc93-6828-464d-9b3a-b7dd52a5da74"
+            },
+            {
+                "degree": "VI7",
+                "scale_degree": "6",
+                "chord_notes_degree": [
+                    "6",
+                    "1",
+                    "3",
+                    "5"
+                ],
+                "id": "b9fc6053-2b6e-4375-8ea3-b53be35dedbe"
+            }
+        ],
+        "id": "9a0818aa-11cb-42a5-91b8-237950627139"
+    },
+    {
+        "name": "Pedal Point Progression",
+        "chords": [
+            {
+                "degree": "Imaj7",
+                "scale_degree": "1",
+                "chord_notes_degree": [
+                    "1",
+                    "3",
+                    "5",
+                    "7"
+                ],
+                "id": "d6b15f94-4d61-4855-9118-fd5ad20eaf22"
+            },
+            {
+                "degree": "",
+                "scale_degree": "",
+                "chord_notes_degree": [
+                    "2",
+                    "4",
+                    "6",
+                    "1"
+                ],
+                "id": "173b05c4-6a40-4b71-b8b0-8717cf93d19d"
+            },
+            {
+                "degree": "",
+                "scale_degree": "",
+                "chord_notes_degree": [
+                    "3",
+                    "#5",
+                    "7",
+                    "2"
+                ],
+                "id": "cc2e0fe2-24be-4e08-abae-763ba8a4b125"
+            },
+            {
+                "degree": "",
+                "scale_degree": "",
+                "chord_notes_degree": [
+                    "4",
+                    "6",
+                    "1",
+                    "b3"
+                ],
+                "id": "a86f0b79-475e-49ae-be54-831ee76c2cd5"
+            }
+        ],
+        "id": "3ba51777-d009-4902-b8d3-474a56c2a0cb"
+    },
+    {
+        "name": "Chromatic Approach",
+        "chords": [
+            {
+                "degree": "Imaj7",
+                "scale_degree": "1",
+                "chord_notes_degree": [
+                    "1",
+                    "3",
+                    "5",
+                    "7"
+                ],
+                "id": "238c6a03-6396-4fc9-84cd-e945993ce75e"
+            },
+            {
+                "degree": "bII\u00b07",
+                "scale_degree": "b2",
+                "chord_notes_degree": [
+                    "b2",
+                    "4",
+                    "6",
+                    "b1"
+                ],
+                "id": "d23a7118-f5ad-451b-a8d7-2abcd5b05abd"
+            },
+            {
+                "degree": "ii7",
+                "scale_degree": "2",
+                "chord_notes_degree": [
+                    "2",
+                    "b4",
+                    "6",
+                    "1"
+                ],
+                "id": "892f905b-707e-4ea7-9281-0fd7bd98d49d"
+            },
+            {
+                "degree": "V7",
+                "scale_degree": "5",
+                "chord_notes_degree": [
+                    "5",
+                    "7",
+                    "2",
+                    "4"
+                ],
+                "id": "98824c3e-686a-4cda-825a-eb65f0fa0951"
+            }
+        ],
+        "id": "8698bd57-3c32-499a-9b09-ee1fd7bbf99a"
+    },
+    {
+        "name": "Altered Dominant",
+        "chords": [
+            {
+                "degree": "ii7",
+                "scale_degree": "2",
+                "chord_notes_degree": [
+                    "2",
+                    "4",
+                    "6",
+                    "1"
+                ],
+                "id": "5878b12f-1a7f-4c55-90b5-e6c7d2da2096"
+            },
+            {
+                "degree": "V7#9",
+                "scale_degree": "5",
+                "chord_notes_degree": [
+                    "5",
+                    "7",
+                    "2",
+                    "4",
+                    "b6"
+                ],
+                "id": "130eab5e-ff96-4c1b-810f-7495522d7020"
+            },
+            {
+                "degree": "Imaj7",
+                "scale_degree": "1",
+                "chord_notes_degree": [
+                    "1",
+                    "3",
+                    "5",
+                    "7"
+                ],
+                "id": "c1d4106a-35ce-4f2f-81bd-ab48b9efbff1"
+            }
+        ],
+        "id": "e53e48ce-0966-4360-a87b-ad020a3cbd81"
+    },
+    {
+        "name": "Bebop Turnaround",
+        "chords": [
+            {
+                "degree": "Imaj7",
+                "scale_degree": "1",
+                "chord_notes_degree": [
+                    "1",
+                    "3",
+                    "5",
+                    "7"
+                ],
+                "id": "01f16caf-f262-4678-a2a2-86bbcfe8b310"
+            },
+            {
+                "degree": "VI7",
+                "scale_degree": "6",
+                "chord_notes_degree": [
+                    "6",
+                    "1",
+                    "3",
+                    "5"
+                ],
+                "id": "132fd4b6-6f47-43f4-9378-096a42677813"
+            },
+            {
+                "degree": "II7",
+                "scale_degree": "2",
+                "chord_notes_degree": [
+                    "2",
+                    "4",
+                    "6",
+                    "1"
+                ],
+                "id": "496a4624-b633-444a-a8cd-e517c8edd039"
+            },
+            {
+                "degree": "V7",
+                "scale_degree": "5",
+                "chord_notes_degree": [
+                    "5",
+                    "7",
+                    "2",
+                    "4"
+                ],
+                "id": "ecfdb123-449b-43b0-abd9-a83c6b4cec3f"
+            }
+        ],
+        "id": "4ed22096-e518-458e-8b71-812da71a8f4b"
+    },
+    {
+        "name": "Secondary Dominant",
+        "chords": [
+            {
+                "degree": "Imaj7",
+                "scale_degree": "1",
+                "chord_notes_degree": [
+                    "1",
+                    "3",
+                    "5",
+                    "7"
+                ],
+                "id": "77444d07-62f9-4f12-8500-1d46c4fbe47b"
+            },
+            {
+                "degree": "V7/ii",
+                "scale_degree": "V/2",
+                "chord_notes_degree": [
+                    "V/2",
+                    "#1",
+                    "3",
+                    "5"
+                ],
+                "id": "dbc231b3-9533-4bac-bfbb-414524d99858"
+            },
+            {
+                "degree": "ii7",
+                "scale_degree": "2",
+                "chord_notes_degree": [
+                    "2",
+                    "4",
+                    "6",
+                    "1"
+                ],
+                "id": "82988f0e-e025-46a7-b3b4-abfc08d01d8e"
+            },
+            {
+                "degree": "V7",
+                "scale_degree": "5",
+                "chord_notes_degree": [
+                    "5",
+                    "7",
+                    "2",
+                    "4"
+                ],
+                "id": "f7032571-3c9b-4ef1-999e-99659633c04e"
+            }
+        ],
+        "id": "6abdb7af-a3b6-46b8-9b1e-1b001d4dbc68"
+    },
+    {
+        "name": "Parallel Minor",
+        "chords": [
+            {
+                "degree": "Imaj7",
+                "scale_degree": "1",
+                "chord_notes_degree": [
+                    "1",
+                    "3",
+                    "5",
+                    "7"
+                ],
+                "id": "ae682aeb-63ae-4673-9df0-99d1ba291ab2"
+            },
+            {
+                "degree": "i7",
+                "scale_degree": "1",
+                "chord_notes_degree": [
+                    "1",
+                    "b3",
+                    "5",
+                    "b7"
+                ],
+                "id": "42b7382c-1753-40aa-8cb5-70fe60f7ee8c"
+            },
+            {
+                "degree": "IV7",
+                "scale_degree": "4",
+                "chord_notes_degree": [
+                    "4",
+                    "6",
+                    "1",
+                    "b3"
+                ],
+                "id": "b697c023-1eee-428f-8526-a9282dfc1513"
+            },
+            {
+                "degree": "bVIImaj7",
+                "scale_degree": "b7",
+                "chord_notes_degree": [
+                    "b7",
+                    "2",
+                    "4",
+                    "6"
+                ],
+                "id": "060346fa-3a39-4eb2-9bbc-9a1b904561a5"
+            }
+        ],
+        "id": "e2133d28-6f5b-441f-8f57-cbc99acc21e3"
+    },
+    {
+        "name": "Imaj7 - IV7",
+        "chords": [
+            {
+                "degree": "Imaj7",
+                "scale_degree": "1",
+                "chord_notes_degree": [
+                    "1",
+                    "3",
+                    "5",
+                    "7"
+                ],
+                "id": "f3f3340c-7a67-48b0-a6a2-b89752a1c0ac"
+            },
+            {
+                "degree": "IV7",
+                "scale_degree": "4",
+                "chord_notes_degree": [
+                    "4",
+                    "6",
+                    "1",
+                    "b3"
+                ],
+                "id": "549a7640-bcf6-4c20-9e85-6997a3fabb49"
+            }
+        ],
+        "id": "f8b4968d-f5f7-425d-aa30-b040bdf4c99d"
+    },
+    {
+        "name": "IVm to I",
+        "chords": [
+            {
+                "degree": "Imaj7",
+                "scale_degree": "1",
+                "chord_notes_degree": [
+                    "1",
+                    "3",
+                    "5",
+                    "7"
+                ],
+                "id": "3a9393b5-b566-4f28-8d1c-c7f3651a9ed4"
+            },
+            {
+                "degree": "iv7",
+                "scale_degree": "4",
+                "chord_notes_degree": [
+                    "4",
+                    "b6",
+                    "1",
+                    "b3"
+                ],
+                "id": "d43361eb-0dd0-476e-b862-04420dfffa92"
+            },
+            {
+                "degree": "Imaj7",
+                "scale_degree": "1",
+                "chord_notes_degree": [
+                    "1",
+                    "3",
+                    "5",
+                    "7"
+                ],
+                "id": "c25ee1e5-314c-46d6-a668-cea14e23c894"
+            }
+        ],
+        "id": "c7ccdba5-6859-47bc-84e3-413a7af772a2"
+    },
+    {
+        "name": "Blues Turnaround",
+        "chords": [
+            {
+                "degree": "I7",
+                "scale_degree": "1",
+                "chord_notes_degree": [
+                    "1",
+                    "3",
+                    "5",
+                    "b7"
+                ],
+                "id": "d952e613-1a75-4c73-8c8f-78527bfff486"
+            },
+            {
+                "degree": "VI7",
+                "scale_degree": "6",
+                "chord_notes_degree": [
+                    "6",
+                    "b1",
+                    "3",
+                    "5"
+                ],
+                "id": "1e8c4a34-1cd8-41ee-a041-eb9208a52962"
+            },
+            {
+                "degree": "II7",
+                "scale_degree": "2",
+                "chord_notes_degree": [
+                    "2",
+                    "4",
+                    "6",
+                    "1"
+                ],
+                "id": "48f51f99-8cca-49c9-be20-1dca9559102a"
+            },
+            {
+                "degree": "V7",
+                "scale_degree": "5",
+                "chord_notes_degree": [
+                    "5",
+                    "7",
+                    "2",
+                    "4"
+                ],
+                "id": "800d7855-db02-4510-828a-2068d1b71417"
+            }
+        ],
+        "id": "3ecae00f-1555-4b44-b4e9-13ddfbb787cf"
+    },
+    {
+        "name": "Half-Step II-V",
+        "chords": [
+            {
+                "degree": "bii7",
+                "scale_degree": "b2",
+                "chord_notes_degree": [
+                    "b2",
+                    "4",
+                    "b6",
+                    "1"
+                ],
+                "id": "5d1b3fa6-c900-471f-86cf-8d9158c01d7b"
+            },
+            {
+                "degree": "bV7",
+                "scale_degree": "b5",
+                "chord_notes_degree": [
+                    "b5",
+                    "7",
+                    "b2",
+                    "4"
+                ],
+                "id": "b05859b3-3f3e-4718-bbdd-f765cf95b2b5"
+            },
+            {
+                "degree": "Imaj7",
+                "scale_degree": "1",
+                "chord_notes_degree": [
+                    "1",
+                    "3",
+                    "5",
+                    "7"
+                ],
+                "id": "8da58aa2-c650-4632-8442-5a72bd842342"
+            }
+        ],
+        "id": "19990a41-67f7-49b4-96cc-e1febb94983d"
+    },
+    {
+        "name": "IVmaj7 - IVmin7 - Imaj7",
+        "chords": [
+            {
+                "degree": "IVmaj7",
+                "scale_degree": "4",
+                "chord_notes_degree": [
+                    "4",
+                    "6",
+                    "1",
+                    "3"
+                ],
+                "id": "b2fbc4fb-9928-45bc-a5f9-40de6a70a51c"
+            },
+            {
+                "degree": "iv7",
+                "scale_degree": "4",
+                "chord_notes_degree": [
+                    "4",
+                    "b6",
+                    "1",
+                    "b3"
+                ],
+                "id": "2a768310-fad5-4fd7-bfce-8a3305891094"
+            },
+            {
+                "degree": "Imaj7",
+                "scale_degree": "1",
+                "chord_notes_degree": [
+                    "1",
+                    "3",
+                    "5",
+                    "7"
+                ],
+                "id": "512dffc8-4b52-408b-bc66-79d649aafcca"
+            }
+        ],
+        "id": "8911a88b-0071-413d-971b-647bd43cbcdd"
+    },
+    {
+        "name": "I - bIII\u00b07 - II- V",
+        "chords": [
+            {
+                "degree": "Imaj7",
+                "scale_degree": "1",
+                "chord_notes_degree": [
+                    "1",
+                    "3",
+                    "5",
+                    "7"
+                ],
+                "id": "fca1b045-92b5-4b76-a378-3a27add1696b"
+            },
+            {
+                "degree": "bIII\u00b07",
+                "scale_degree": "b3",
+                "chord_notes_degree": [
+                    "b3",
+                    "b5",
+                    "b7",
+                    "2"
+                ],
+                "id": "5ea4248a-6e1f-4594-9dff-44e3b109bee8"
+            },
+            {
+                "degree": "ii7",
+                "scale_degree": "2",
+                "chord_notes_degree": [
+                    "2",
+                    "4",
+                    "6",
+                    "1"
+                ],
+                "id": "e70d8449-4ea1-465f-ad10-a25dd128c876"
+            },
+            {
+                "degree": "V7",
+                "scale_degree": "5",
+                "chord_notes_degree": [
+                    "5",
+                    "7",
+                    "2",
+                    "4"
+                ],
+                "id": "2bfc39cf-c01f-41dc-9f43-ff4a554c88df"
+            }
+        ],
+        "id": "58b84fd7-630e-422e-ae95-c43d5ed1ea5d"
+    },
+    {
+        "name": "Chromatic II-V",
+        "chords": [
+            {
+                "degree": "ii7",
+                "scale_degree": "2",
+                "chord_notes_degree": [
+                    "2",
+                    "4",
+                    "6",
+                    "1"
+                ],
+                "id": "64643cc6-1452-4e00-a1ed-22f87e3f1803"
+            },
+            {
+                "degree": "V7",
+                "scale_degree": "5",
+                "chord_notes_degree": [
+                    "5",
+                    "7",
+                    "2",
+                    "4"
+                ],
+                "id": "5e2bf6bf-3a75-43b3-8195-638b9848195f"
+            },
+            {
+                "degree": "bii7",
+                "scale_degree": "b2",
+                "chord_notes_degree": [
+                    "b2",
+                    "4",
+                    "b6",
+                    "1"
+                ],
+                "id": "09a89206-ffd0-4360-822d-720ace54b5eb"
+            },
+            {
+                "degree": "bV7",
+                "scale_degree": "b5",
+                "chord_notes_degree": [
+                    "b5",
+                    "7",
+                    "b2",
+                    "4"
+                ],
+                "id": "194a1fb7-7540-482e-bfd8-c80cf30f5da8"
+            },
+            {
+                "degree": "Imaj7",
+                "scale_degree": "1",
+                "chord_notes_degree": [
+                    "1",
+                    "3",
+                    "5",
+                    "7"
+                ],
+                "id": "c2fbc5bf-2609-413f-a94d-9949df1429ef"
+            }
+        ],
+        "id": "a438cb68-5a6f-4d6a-840a-8e6dd9268e8d"
+    },
+    {
+        "name": "Secondary II-V",
+        "chords": [
+            {
+                "degree": "vi7",
+                "scale_degree": "6",
+                "chord_notes_degree": [
+                    "6",
+                    "1",
+                    "3",
+                    "5"
+                ],
+                "id": "aff2fec8-259d-42ae-93d6-e885861b6563"
+            },
+            {
+                "degree": "V7/V",
+                "scale_degree": "V/5",
+                "chord_notes_degree": [
+                    "V/5",
+                    "7",
+                    "2",
+                    "4"
+                ],
+                "id": "47870565-88ee-4441-94e2-26df7e32d8a5"
+            },
+            {
+                "degree": "Vmaj7",
+                "scale_degree": "5",
+                "chord_notes_degree": [
+                    "5",
+                    "7",
+                    "2",
+                    "4#"
+                ],
+                "id": "916bc95e-4ec4-41e0-bc36-aa846ebd2458"
+            },
+            {
+                "degree": "Imaj7",
+                "scale_degree": "1",
+                "chord_notes_degree": [
+                    "1",
+                    "3",
+                    "5",
+                    "7"
+                ],
+                "id": "2daf0dd2-9bad-4f52-85dd-c1622dfa3c6e"
+            }
+        ],
+        "id": "97c3393a-8067-4fa6-881d-fb094abfd3ab"
+    },
+    {
+        "name": "I - VI7 - II7 - V7",
+        "chords": [
+            {
+                "degree": "Imaj7",
+                "scale_degree": "1",
+                "chord_notes_degree": [
+                    "1",
+                    "3",
+                    "5",
+                    "7"
+                ],
+                "id": "5216bc33-3811-4e0b-99a6-d90f1f7527e4"
+            },
+            {
+                "degree": "VI7",
+                "scale_degree": "6",
+                "chord_notes_degree": [
+                    "6",
+                    "b2",
+                    "4",
+                    "6"
+                ],
+                "id": "d9549fcc-31af-4d7d-92f6-a4fd9a7599ce"
+            },
+            {
+                "degree": "II7",
+                "scale_degree": "2",
+                "chord_notes_degree": [
+                    "2",
+                    "4",
+                    "6",
+                    "1"
+                ],
+                "id": "a844c574-314a-4b52-af12-57db63467f51"
+            },
+            {
+                "degree": "V7",
+                "scale_degree": "5",
+                "chord_notes_degree": [
+                    "5",
+                    "7",
+                    "2",
+                    "4"
+                ],
+                "id": "64d48014-2230-45b4-ba55-751b4dcd8824"
+            }
+        ],
+        "id": "c4f66532-4e06-4e13-896d-21644ae7e589"
+    },
+    {
+        "name": "I - III7 - VI7 - II7 - V7",
+        "chords": [
+            {
+                "degree": "Imaj7",
+                "scale_degree": "1",
+                "chord_notes_degree": [
+                    "1",
+                    "3",
+                    "5",
+                    "7"
+                ],
+                "id": "cb8b199a-40da-45e8-9f65-f02d84bc2277"
+            },
+            {
+                "degree": "III7",
+                "scale_degree": "3",
+                "chord_notes_degree": [
+                    "3",
+                    "#5",
+                    "7",
+                    "2"
+                ],
+                "id": "2f09eb91-7b55-45b9-ab2f-ab84a585a2ca"
+            },
+            {
+                "degree": "VI7",
+                "scale_degree": "6",
+                "chord_notes_degree": [
+                    "6",
+                    "1",
+                    "3",
+                    "5"
+                ],
+                "id": "455f5c09-f15c-4daf-9f6e-27320a209f39"
+            },
+            {
+                "degree": "II7",
+                "scale_degree": "2",
+                "chord_notes_degree": [
+                    "2",
+                    "4",
+                    "6",
+                    "1"
+                ],
+                "id": "7d3fe698-9db1-4d01-b2b0-f28a623f4535"
+            },
+            {
+                "degree": "V7",
+                "scale_degree": "5",
+                "chord_notes_degree": [
+                    "5",
+                    "7",
+                    "2",
+                    "4"
+                ],
+                "id": "ebbffa4d-f206-436c-b105-dafa1f0baca5"
+            }
+        ],
+        "id": "422fefdd-05fb-40ac-b273-f072032b6478"
+    },
+    {
+        "name": "Lady Bird Changes",
+        "chords": [
+            {
+                "degree": "Imaj7",
+                "scale_degree": "1",
+                "chord_notes_degree": [
+                    "1",
+                    "3",
+                    "5",
+                    "7"
+                ],
+                "id": "8668393b-cef2-4859-984a-9481c989dd4a"
+            },
+            {
+                "degree": "bIIImin7",
+                "scale_degree": "b3",
+                "chord_notes_degree": [
+                    "b3",
+                    "b5",
+                    "b7",
+                    "2"
+                ],
+                "id": "71da17e6-d158-4b20-b744-d1faa78db507"
+            },
+            {
+                "degree": "bVI7",
+                "scale_degree": "b6",
+                "chord_notes_degree": [
+                    "b6",
+                    "1",
+                    "b3",
+                    "5"
+                ],
+                "id": "6ab197f9-23d9-4750-ab05-1518c065b977"
+            },
+            {
+                "degree": "bIImaj7",
+                "scale_degree": "b2",
+                "chord_notes_degree": [
+                    "b2",
+                    "4",
+                    "b6",
+                    "1"
+                ],
+                "id": "5a1053f0-d2cb-470b-b210-0b0df6569756"
+            }
+        ],
+        "id": "9e8bbac5-c8ee-4ab0-9461-ff8784bffe12"
+    },
+    {
+        "name": "Giant Steps Progression",
+        "chords": [
+            {
+                "degree": "Imaj7",
+                "scale_degree": "1",
+                "chord_notes_degree": [
+                    "1",
+                    "3",
+                    "5",
+                    "7"
+                ],
+                "id": "97e21bd6-3329-4936-a86d-e0ac04dc7a0d"
+            },
+            {
+                "degree": "",
+                "scale_degree": "",
+                "chord_notes_degree": [
+                    "3",
+                    "5",
+                    "7",
+                    "2"
+                ],
+                "id": "4fcf37ed-ab2c-4add-8eda-51e6615a4ed7"
+            },
+            {
+                "degree": "",
+                "scale_degree": "",
+                "chord_notes_degree": [
+                    "5",
+                    "7",
+                    "2",
+                    "4"
+                ],
+                "id": "ced37059-b1b1-4e4b-a09d-d6ae87463a8c"
+            },
+            {
+                "degree": "",
+                "scale_degree": "",
+                "chord_notes_degree": [
+                    "b7",
+                    "#2",
+                    "4",
+                    "6"
+                ],
+                "id": "054dbb10-22c3-4ff9-8f5f-fa5548b1ef0c"
+            },
+            {
+                "degree": "",
+                "scale_degree": "",
+                "chord_notes_degree": [
+                    "b3",
+                    "5",
+                    "b7",
+                    "2"
+                ],
+                "id": "21984585-9449-48af-970d-e0313e777da0"
+            },
+            {
+                "degree": "",
+                "scale_degree": "",
+                "chord_notes_degree": [
+                    "#5",
+                    "7",
+                    "2",
+                    "4"
+                ],
+                "id": "c54670a0-8eb8-471d-96d5-ddc94f60ca74"
+            },
+            {
+                "degree": "Imaj7",
+                "scale_degree": "1",
+                "chord_notes_degree": [
+                    "1",
+                    "3",
+                    "5",
+                    "7"
+                ],
+                "id": "8e35190f-5ee5-4533-996b-5f3b170ac8b5"
+            }
+        ],
+        "id": "1d99d810-8790-44b4-b586-36b7f63e15aa"
+    },
+    {
+        "name": "Dim7 Passing Chords",
+        "chords": [
+            {
+                "degree": "Imaj7",
+                "scale_degree": "1",
+                "chord_notes_degree": [
+                    "1",
+                    "3",
+                    "5",
+                    "7"
+                ],
+                "id": "5f9f6b24-945b-4441-b4f2-c16f929d0726"
+            },
+            {
+                "degree": "#Idim7",
+                "scale_degree": "#1",
+                "chord_notes_degree": [
+                    "#1",
+                    "3",
+                    "5",
+                    "b7"
+                ],
+                "id": "78ae6c07-093c-4484-b801-5c9a9feee34f"
+            },
+            {
+                "degree": "ii7",
+                "scale_degree": "2",
+                "chord_notes_degree": [
+                    "2",
+                    "4",
+                    "6",
+                    "1"
+                ],
+                "id": "24c79836-1c7c-4358-bbdd-f9ccefc1ebe9"
+            },
+            {
+                "degree": "V7",
+                "scale_degree": "5",
+                "chord_notes_degree": [
+                    "5",
+                    "7",
+                    "2",
+                    "4"
+                ],
+                "id": "5620b2a4-9e47-4111-812d-f55dba13c75b"
+            }
+        ],
+        "id": "173d9609-9c7c-438c-87d1-205f93ae4b2c"
+    },
+    {
+        "name": "Minor Line Clich\u00e9",
+        "chords": [
+            {
+                "degree": "vi7",
+                "scale_degree": "6",
+                "chord_notes_degree": [
+                    "6",
+                    "1",
+                    "3",
+                    "5"
+                ],
+                "id": "6ae271ec-4c45-4049-bd69-47fab348c56e"
+            },
+            {
+                "degree": "",
+                "scale_degree": "",
+                "chord_notes_degree": [
+                    "#1",
+                    "6",
+                    "1",
+                    "3",
+                    "5"
+                ],
+                "id": "c2f96b08-cc1f-415b-8565-45500c9d14b8"
+            },
+            {
+                "degree": "",
+                "scale_degree": "",
+                "chord_notes_degree": [
+                    "7",
+                    "6",
+                    "1",
+                    "3",
+                    "5"
+                ],
+                "id": "2e85f437-8e8f-4047-9229-730903648534"
+            },
+            {
+                "degree": "",
+                "scale_degree": "",
+                "chord_notes_degree": [
+                    "4#",
+                    "6",
+                    "1",
+                    "3",
+                    "5"
+                ],
+                "id": "3a2c3a29-896f-4cf4-8342-65ca4ac134d0"
+            }
+        ],
+        "id": "224e5529-d8df-4607-b90f-abf3f4e24401"
+    },
+    {
+        "name": "I7 - IV7 Groove",
+        "chords": [
+            {
+                "degree": "I7",
+                "scale_degree": "1",
+                "chord_notes_degree": [
+                    "1",
+                    "3",
+                    "5",
+                    "b7"
+                ],
+                "id": "df1e71bc-f3db-42d3-a7ff-d1e4e8a54db3"
+            },
+            {
+                "degree": "IV7",
+                "scale_degree": "4",
+                "chord_notes_degree": [
+                    "4",
+                    "6",
+                    "1",
+                    "b3"
+                ],
+                "id": "e1fc0f26-af02-418f-bc5f-08e533730ceb"
+            }
+        ],
+        "id": "cf2f2022-f827-49a2-8414-d7477e22f823"
+    },
+    {
+        "name": "I7 - bVII7 Vamp",
+        "chords": [
+            {
+                "degree": "I7",
+                "scale_degree": "1",
+                "chord_notes_degree": [
+                    "1",
+                    "3",
+                    "5",
+                    "b7"
+                ],
+                "id": "ecaff109-70b4-41c6-b2ae-9af8e0abfc19"
+            },
+            {
+                "degree": "\u266dVII7",
+                "scale_degree": "\u266d7",
+                "chord_notes_degree": [
+                    "b7",
+                    "2",
+                    "4",
+                    "b6"
+                ],
+                "id": "6874903a-d031-4f15-9b28-4a0606ad84da"
+            }
+        ],
+        "id": "5ceb8497-c22e-46ef-9a1b-7538f1ae6383"
+    },
+    {
+        "name": "I7 - IV7 - V7 Jam",
+        "chords": [
+            {
+                "degree": "I7",
+                "scale_degree": "1",
+                "chord_notes_degree": [
+                    "1",
+                    "3",
+                    "5",
+                    "b7"
+                ],
+                "id": "ba003523-812c-4f12-a4c0-0c37e785c8f4"
+            },
+            {
+                "degree": "IV7",
+                "scale_degree": "4",
+                "chord_notes_degree": [
+                    "4",
+                    "6",
+                    "1",
+                    "b3"
+                ],
+                "id": "38700e27-d62a-402f-b821-6c453decd612"
+            },
+            {
+                "degree": "V7",
+                "scale_degree": "5",
+                "chord_notes_degree": [
+                    "5",
+                    "7",
+                    "2",
+                    "4"
+                ],
+                "id": "a1f86ee7-90fa-4e01-84a8-20a88831209c"
+            }
+        ],
+        "id": "6ff51f81-a27e-414b-864a-928f57e894ab"
+    },
+    {
+        "name": "Funky II7 - V7 - I7",
+        "chords": [
+            {
+                "degree": "II7",
+                "scale_degree": "2",
+                "chord_notes_degree": [
+                    "2",
+                    "4",
+                    "6",
+                    "1"
+                ],
+                "id": "27c2cd4e-9835-4bac-ae63-4e16ef536799"
+            },
+            {
+                "degree": "V7",
+                "scale_degree": "5",
+                "chord_notes_degree": [
+                    "5",
+                    "7",
+                    "2",
+                    "4"
+                ],
+                "id": "ec736bd9-5d3d-4599-9f72-8966c6941549"
+            },
+            {
+                "degree": "I7",
+                "scale_degree": "1",
+                "chord_notes_degree": [
+                    "1",
+                    "3",
+                    "5",
+                    "b7"
+                ],
+                "id": "7895546f-3300-4f59-86a6-609d40f4bc30"
+            }
+        ],
+        "id": "09dcd027-2abf-42be-a38c-068b273d85c2"
+    },
+    {
+        "name": "I7 - III7 - VI7 - II7 - V7",
+        "chords": [
+            {
+                "degree": "Imaj7",
+                "scale_degree": "1",
+                "chord_notes_degree": [
+                    "1",
+                    "3",
+                    "5",
+                    "7"
+                ],
+                "id": "e3bcf981-e0cd-4ba1-914f-c2cb023a2ff0"
+            },
+            {
+                "degree": "III7",
+                "scale_degree": "3",
+                "chord_notes_degree": [
+                    "3",
+                    "#5",
+                    "7",
+                    "2"
+                ],
+                "id": "82126d7b-5f3f-4fc5-b4b3-52607ab30267"
+            },
+            {
+                "degree": "VI7",
+                "scale_degree": "6",
+                "chord_notes_degree": [
+                    "6",
+                    "1",
+                    "3",
+                    "5"
+                ],
+                "id": "4821efcf-3b4f-478d-90a0-2e418b36bd60"
+            },
+            {
+                "degree": "II7",
+                "scale_degree": "2",
+                "chord_notes_degree": [
+                    "2",
+                    "4",
+                    "6",
+                    "1"
+                ],
+                "id": "51f5f8b8-0c9e-46fe-a5e8-656ad3d9ee96"
+            },
+            {
+                "degree": "V7",
+                "scale_degree": "5",
+                "chord_notes_degree": [
+                    "5",
+                    "7",
+                    "2",
+                    "4"
+                ],
+                "id": "9db9c3c3-135c-4029-a9cd-5ffbb8609bff"
+            }
+        ],
+        "id": "1dd00d9d-8789-4acb-8613-143c8564f40e"
+    },
+    {
+        "name": "Lady Bird Changes",
+        "chords": [
+            {
+                "degree": "Imaj7",
+                "scale_degree": "1",
+                "chord_notes_degree": [
+                    "1",
+                    "3",
+                    "5",
+                    "7"
+                ],
+                "id": "89bc338e-d693-4e30-bd51-19946ad18ba4"
+            },
+            {
+                "degree": "bIIImin7",
+                "scale_degree": "b3",
+                "chord_notes_degree": [
+                    "b3",
+                    "b5",
+                    "b7",
+                    "2"
+                ],
+                "id": "4376fbe6-9388-45fe-a174-aaec049c1266"
+            },
+            {
+                "degree": "bVI7",
+                "scale_degree": "b6",
+                "chord_notes_degree": [
+                    "b6",
+                    "1",
+                    "b3",
+                    "5"
+                ],
+                "id": "bda44202-b7e2-4c86-9756-fc7c2be54b5a"
+            },
+            {
+                "degree": "bIImaj7",
+                "scale_degree": "b2",
+                "chord_notes_degree": [
+                    "b2",
+                    "4",
+                    "b6",
+                    "1"
+                ],
+                "id": "c5283fc9-e57f-4613-83c8-beba5eead810"
+            }
+        ],
+        "id": "d5d18985-afe5-42db-9fcb-ec81c70443cc"
+    },
+    {
+        "name": "Giant Steps Progression",
+        "chords": [
+            {
+                "degree": "Imaj7",
+                "scale_degree": "1",
+                "chord_notes_degree": [
+                    "1",
+                    "3",
+                    "5",
+                    "7"
+                ],
+                "id": "1bb5c392-8265-4eb1-8737-cb97353e059a"
+            },
+            {
+                "degree": "",
+                "scale_degree": "",
+                "chord_notes_degree": [
+                    "3",
+                    "5",
+                    "7",
+                    "2"
+                ],
+                "id": "0a1d0d70-a21a-4c58-ad2e-ac4ef4f06179"
+            },
+            {
+                "degree": "",
+                "scale_degree": "",
+                "chord_notes_degree": [
+                    "5",
+                    "7",
+                    "2",
+                    "4"
+                ],
+                "id": "49e35d85-6dd5-45b5-a5df-83c4412c3b2a"
+            },
+            {
+                "degree": "",
+                "scale_degree": "",
+                "chord_notes_degree": [
+                    "b7",
+                    "#2",
+                    "4",
+                    "6"
+                ],
+                "id": "35769fc6-8e8e-488f-ab45-f3ff1cb11348"
+            },
+            {
+                "degree": "",
+                "scale_degree": "",
+                "chord_notes_degree": [
+                    "b3",
+                    "5",
+                    "b7",
+                    "2"
+                ],
+                "id": "a69f1de3-d34d-4632-bc5d-fd5a07270cd6"
+            },
+            {
+                "degree": "",
+                "scale_degree": "",
+                "chord_notes_degree": [
+                    "#5",
+                    "7",
+                    "2",
+                    "4"
+                ],
+                "id": "6f1cf59d-a245-46eb-9feb-fd02fa55eb74"
+            },
+            {
+                "degree": "Imaj7",
+                "scale_degree": "1",
+                "chord_notes_degree": [
+                    "1",
+                    "3",
+                    "5",
+                    "7"
+                ],
+                "id": "ed19a317-9eda-4c35-a08d-cf2c2eea63a9"
+            }
+        ],
+        "id": "c04fed74-e394-46e2-b35a-ed815ef026ba"
+    },
+    {
+        "name": "I7 - bVI7 Switch",
+        "chords": [
+            {
+                "degree": "I7",
+                "scale_degree": "1",
+                "chord_notes_degree": [
+                    "1",
+                    "3",
+                    "5",
+                    "b7"
+                ],
+                "id": "0e5ebd28-05e6-48f3-9e8a-111fc370bf7b"
+            },
+            {
+                "degree": "\u266dVI7",
+                "scale_degree": "\u266d6",
+                "chord_notes_degree": [
+                    "\u266d6",
+                    "1",
+                    "\u266d3",
+                    "\u266d5"
+                ],
+                "id": "0e9e537b-f5af-408c-a43a-ebb29feeae5c"
+            }
+        ],
+        "id": "392c9452-d45d-4131-9ee5-b3f3906c5257"
+    },
+    {
+        "name": "I7 - IV7 - I7 - V7 Turnaround",
+        "chords": [
+            {
+                "degree": "I7",
+                "scale_degree": "1",
+                "chord_notes_degree": [
+                    "1",
+                    "3",
+                    "5",
+                    "b7"
+                ],
+                "id": "f9e09e21-f4b6-42e0-86d7-aadc1c99a76b"
+            },
+            {
+                "degree": "IV7",
+                "scale_degree": "4",
+                "chord_notes_degree": [
+                    "4",
+                    "6",
+                    "1",
+                    "b3"
+                ],
+                "id": "5d725c40-5e20-4637-b9d0-e89c3278f7c8"
+            },
+            {
+                "degree": "I7",
+                "scale_degree": "1",
+                "chord_notes_degree": [
+                    "1",
+                    "3",
+                    "5",
+                    "b7"
+                ],
+                "id": "64dd744c-bb89-48e6-b841-763dd868f30b"
+            },
+            {
+                "degree": "V7",
+                "scale_degree": "5",
+                "chord_notes_degree": [
+                    "5",
+                    "7",
+                    "2",
+                    "4"
+                ],
+                "id": "3224e15a-1ca7-4590-8347-49c736e5df85"
+            }
+        ],
+        "id": "fd33b038-41bf-4e71-8646-9d808e7e13f7"
+    },
+    {
+        "name": "I7 - II7 - IV7 - V7",
+        "chords": [
+            {
+                "degree": "I7",
+                "scale_degree": "1",
+                "chord_notes_degree": [
+                    "1",
+                    "3",
+                    "5",
+                    "b7"
+                ],
+                "id": "2fb0c863-d726-4c50-94aa-b3410a40ccd2"
+            },
+            {
+                "degree": "II7",
+                "scale_degree": "2",
+                "chord_notes_degree": [
+                    "2",
+                    "#4",
+                    "6",
+                    "1"
+                ],
+                "id": "640381a6-23e4-4fa0-bfec-93c0973bb654"
+            },
+            {
+                "degree": "IV7",
+                "scale_degree": "4",
+                "chord_notes_degree": [
+                    "4",
+                    "6",
+                    "1",
+                    "b3"
+                ],
+                "id": "493ba0e4-1e71-484e-8742-02f3ad91f8d9"
+            },
+            {
+                "degree": "V7",
+                "scale_degree": "5",
+                "chord_notes_degree": [
+                    "5",
+                    "7",
+                    "2",
+                    "4"
+                ],
+                "id": "a0b66f70-c3af-431b-805c-364afe9fe191"
+            }
+        ],
+        "id": "199fd34d-cffa-4695-9dbf-bcbe434fb299"
+    },
+    {
+        "name": "I7sus4 Groove",
+        "chords": [
+            {
+                "degree": "I7sus4",
+                "scale_degree": "1",
+                "chord_notes_degree": [
+                    "1",
+                    "4",
+                    "5",
+                    "b7"
+                ],
+                "id": "edd36d81-90cf-42ae-8ce1-343e6cc23f45"
+            },
+            {
+                "degree": "I7",
+                "scale_degree": "1",
+                "chord_notes_degree": [
+                    "1",
+                    "3",
+                    "5",
+                    "b7"
+                ],
+                "id": "46be0a49-bd29-4352-b9c9-3a6fb756f087"
+            }
+        ],
+        "id": "52e885d4-664c-43f9-87d8-b0f8f0a03fea"
+    },
+    {
+        "name": "I7 - V7sus4 - V7",
+        "chords": [
+            {
+                "degree": "I7",
+                "scale_degree": "1",
+                "chord_notes_degree": [
+                    "1",
+                    "3",
+                    "5",
+                    "b7"
+                ],
+                "id": "5eab1b26-ae5a-415a-b029-f43ef8e0a5fd"
+            },
+            {
+                "degree": "V7sus4",
+                "scale_degree": "5",
+                "chord_notes_degree": [
+                    "5",
+                    "1",
+                    "2",
+                    "4"
+                ],
+                "id": "a6229afa-25dd-418b-8f87-0b4045067c28"
+            },
+            {
+                "degree": "V7",
+                "scale_degree": "5",
+                "chord_notes_degree": [
+                    "5",
+                    "7",
+                    "2",
+                    "4"
+                ],
+                "id": "286a5e33-5a5a-4007-83c3-67e88fecdabb"
+            }
+        ],
+        "id": "0138b168-8c71-416e-a123-695e17189b66"
+    },
+    {
+        "name": "I7 - IV9 Funk",
+        "chords": [
+            {
+                "degree": "I7",
+                "scale_degree": "1",
+                "chord_notes_degree": [
+                    "1",
+                    "3",
+                    "5",
+                    "b7"
+                ],
+                "id": "038fb8cc-ca07-4a5f-a674-be8dc6021266"
+            },
+            {
+                "degree": "IV9",
+                "scale_degree": "4",
+                "chord_notes_degree": [
+                    "4",
+                    "6",
+                    "1",
+                    "b3",
+                    "5"
+                ],
+                "id": "251f1b85-44ac-45a1-a14e-745d1b6daf12"
+            }
+        ],
+        "id": "120e8ca6-fc66-4a17-be76-66afb6192672"
+    },
+    {
+        "name": "I7 - bVII9 Vamp",
+        "chords": [
+            {
+                "degree": "I7",
+                "scale_degree": "1",
+                "chord_notes_degree": [
+                    "1",
+                    "3",
+                    "5",
+                    "b7"
+                ],
+                "id": "f35921b8-4ed0-4d71-9bbf-b4898ae94ece"
+            },
+            {
+                "degree": "\u266dVII9",
+                "scale_degree": "\u266d7",
+                "chord_notes_degree": [
+                    "b7",
+                    "2",
+                    "4",
+                    "6",
+                    "1"
+                ],
+                "id": "b1b902a1-ec50-460f-9b60-ee7ab552cef4"
+            }
+        ],
+        "id": "a7bb765e-a02b-4af4-908c-6bf4a051b5ce"
+    },
+    {
+        "name": "I7 - IV7 - V7 - bVI7",
+        "chords": [
+            {
+                "degree": "I7",
+                "scale_degree": "1",
+                "chord_notes_degree": [
+                    "1",
+                    "3",
+                    "5",
+                    "b7"
+                ],
+                "id": "704f8ebc-5e2a-45ec-9cca-770508900b35"
+            },
+            {
+                "degree": "IV7",
+                "scale_degree": "4",
+                "chord_notes_degree": [
+                    "4",
+                    "6",
+                    "1",
+                    "b3"
+                ],
+                "id": "3850f4bc-deae-4c3d-90ec-d666a51fd8bd"
+            },
+            {
+                "degree": "V7",
+                "scale_degree": "5",
+                "chord_notes_degree": [
+                    "5",
+                    "7",
+                    "2",
+                    "4"
+                ],
+                "id": "912bf8d9-c0c8-4b3f-81ae-23a1d5aff6a6"
+            },
+            {
+                "degree": "\u266dVI7",
+                "scale_degree": "\u266d6",
+                "chord_notes_degree": [
+                    "\u266d6",
+                    "1",
+                    "\u266d3",
+                    "\u266d5"
+                ],
+                "id": "28f5d45c-dd8b-4435-9b96-c426fdaff88e"
+            }
+        ],
+        "id": "8a46b3ae-d3f3-4321-806b-d38de84ce782"
+    },
+    {
+        "name": "I7 - bII7 Tension",
+        "chords": [
+            {
+                "degree": "I7",
+                "scale_degree": "1",
+                "chord_notes_degree": [
+                    "1",
+                    "3",
+                    "5",
+                    "b7"
+                ],
+                "id": "da4dfc3b-485f-4022-a884-acb2937f26ea"
+            },
+            {
+                "degree": "\u266dII7",
+                "scale_degree": "\u266d2",
+                "chord_notes_degree": [
+                    "\u266d2",
+                    "4",
+                    "\u266d6",
+                    "\u266d1"
+                ],
+                "id": "e661c4ce-ab88-4170-aa66-df4e07ca9652"
+            }
+        ],
+        "id": "0d55cd72-ee7b-468e-8024-eaa1b3540236"
+    },
+    {
+        "name": "I7 - IV7 - I7 Groove",
+        "chords": [
+            {
+                "degree": "I7",
+                "scale_degree": "1",
+                "chord_notes_degree": [
+                    "1",
+                    "3",
+                    "5",
+                    "b7"
+                ],
+                "id": "e6d14388-1d1c-47c0-9900-d1667a9b15ca"
+            },
+            {
+                "degree": "IV7",
+                "scale_degree": "4",
+                "chord_notes_degree": [
+                    "4",
+                    "6",
+                    "1",
+                    "b3"
+                ],
+                "id": "e27d3902-720c-4366-8c00-9bb6ee5b26e3"
+            },
+            {
+                "degree": "I7",
+                "scale_degree": "1",
+                "chord_notes_degree": [
+                    "1",
+                    "3",
+                    "5",
+                    "b7"
+                ],
+                "id": "009bd3bd-3ece-4142-8064-514ce22dcd60"
+            }
+        ],
+        "id": "9edbd16b-69e8-4967-8cbd-088b56de14fd"
+    },
+    {
+        "name": "I7 - IV7 - V7 - IV7",
+        "chords": [
+            {
+                "degree": "I7",
+                "scale_degree": "1",
+                "chord_notes_degree": [
+                    "1",
+                    "3",
+                    "5",
+                    "b7"
+                ],
+                "id": "22aa9c02-9b51-4bb4-8055-09cf2335677c"
+            },
+            {
+                "degree": "IV7",
+                "scale_degree": "4",
+                "chord_notes_degree": [
+                    "4",
+                    "6",
+                    "1",
+                    "b3"
+                ],
+                "id": "06bbb7ca-614e-4ead-8b41-20dc4995f84b"
+            },
+            {
+                "degree": "V7",
+                "scale_degree": "5",
+                "chord_notes_degree": [
+                    "5",
+                    "7",
+                    "2",
+                    "4"
+                ],
+                "id": "4b70014f-ef2e-4594-9735-50bee069f860"
+            },
+            {
+                "degree": "IV7",
+                "scale_degree": "4",
+                "chord_notes_degree": [
+                    "4",
+                    "6",
+                    "1",
+                    "b3"
+                ],
+                "id": "ed9ac0b3-cabb-4196-b398-68836dfd2bd7"
+            }
+        ],
+        "id": "9b126d9b-eda3-4ba4-89cd-c302ac7c5a30"
+    },
+    {
+        "name": "Minor Scale Ascension",
+        "chords": [
+            {
+                "degree": "i",
+                "scale_degree": "1",
+                "chord_notes_degree": [
+                    "1",
+                    "b3",
+                    "5"
+                ],
+                "id": "5ee8e14f-7445-434d-87b5-29ad6d741411"
+            }
+        ],
+        "id": "899731cc-74ab-4de7-bc60-6b5b325dce67"
+    },
+    {
+        "name": "I7 - bVI7 Switch",
+        "chords": [
+            {
+                "degree": "I7",
+                "scale_degree": "1",
+                "chord_notes_degree": [
+                    "1",
+                    "3",
+                    "5",
+                    "b7"
+                ],
+                "id": "50bdc3ba-4f42-496b-9cb0-e63ee45da8f7"
+            },
+            {
+                "degree": "\u266dVI7",
+                "scale_degree": "\u266d6",
+                "chord_notes_degree": [
+                    "\u266d6",
+                    "1",
+                    "\u266d3",
+                    "\u266d5"
+                ],
+                "id": "bf3a0190-d3e5-4611-a153-92489f718033"
+            }
+        ],
+        "id": "d988f724-6c04-412c-ace4-889abb578a8f"
+    },
+    {
+        "name": "I7 - IV7 - I7 - V7 Turnaround",
+        "chords": [
+            {
+                "degree": "I7",
+                "scale_degree": "1",
+                "chord_notes_degree": [
+                    "1",
+                    "3",
+                    "5",
+                    "b7"
+                ],
+                "id": "8474a573-21ad-43e2-aa11-b7aabe030667"
+            },
+            {
+                "degree": "IV7",
+                "scale_degree": "4",
+                "chord_notes_degree": [
+                    "4",
+                    "6",
+                    "1",
+                    "b3"
+                ],
+                "id": "b5522255-904d-48df-89d1-f08190ded687"
+            },
+            {
+                "degree": "I7",
+                "scale_degree": "1",
+                "chord_notes_degree": [
+                    "1",
+                    "3",
+                    "5",
+                    "b7"
+                ],
+                "id": "d83d46ca-b9a9-4ec1-b520-16c80c0bcaac"
+            },
+            {
+                "degree": "V7",
+                "scale_degree": "5",
+                "chord_notes_degree": [
+                    "5",
+                    "7",
+                    "2",
+                    "4"
+                ],
+                "id": "415efa8b-d173-4573-8e48-b683b0c1d8eb"
+            }
+        ],
+        "id": "92551ef8-9e8e-473a-be74-99fbf65e61b2"
+    },
+    {
+        "name": "I7 - II7 - IV7 - V7",
+        "chords": [
+            {
+                "degree": "I7",
+                "scale_degree": "1",
+                "chord_notes_degree": [
+                    "1",
+                    "3",
+                    "5",
+                    "b7"
+                ],
+                "id": "4b52f8b2-ee52-4c7b-93c0-e4cdb93ee34c"
+            },
+            {
+                "degree": "II7",
+                "scale_degree": "2",
+                "chord_notes_degree": [
+                    "2",
+                    "#4",
+                    "6",
+                    "1"
+                ],
+                "id": "02f6628c-ccc5-46c2-9abf-45fa71692d7f"
+            },
+            {
+                "degree": "IV7",
+                "scale_degree": "4",
+                "chord_notes_degree": [
+                    "4",
+                    "6",
+                    "1",
+                    "b3"
+                ],
+                "id": "1394c9f4-8eee-4305-a227-7c7c780d734c"
+            },
+            {
+                "degree": "V7",
+                "scale_degree": "5",
+                "chord_notes_degree": [
+                    "5",
+                    "7",
+                    "2",
+                    "4"
+                ],
+                "id": "be1ac937-e3fc-4cc6-9273-a176b9d63abf"
+            }
+        ],
+        "id": "c6025ae7-639e-4f84-b3eb-356332a3e3a6"
+    },
+    {
+        "name": "I7sus4 Groove",
+        "chords": [
+            {
+                "degree": "I7sus4",
+                "scale_degree": "1",
+                "chord_notes_degree": [
+                    "1",
+                    "4",
+                    "5",
+                    "b7"
+                ],
+                "id": "478bd4a8-f38f-4df8-b052-ff40a2481425"
+            },
+            {
+                "degree": "I7",
+                "scale_degree": "1",
+                "chord_notes_degree": [
+                    "1",
+                    "3",
+                    "5",
+                    "b7"
+                ],
+                "id": "c9c67c4a-794a-4005-9ec6-e862ae9a0b15"
+            }
+        ],
+        "id": "5d660c93-dc5a-498f-8275-a6b9e25ea67b"
+    },
+    {
+        "name": "I7 - V7sus4 - V7",
+        "chords": [
+            {
+                "degree": "I7",
+                "scale_degree": "1",
+                "chord_notes_degree": [
+                    "1",
+                    "3",
+                    "5",
+                    "b7"
+                ],
+                "id": "c156816b-6805-4097-95f7-d8f9cccc544c"
+            },
+            {
+                "degree": "V7sus4",
+                "scale_degree": "5",
+                "chord_notes_degree": [
+                    "5",
+                    "1",
+                    "2",
+                    "4"
+                ],
+                "id": "f1486ba6-5f64-455b-bc3f-982dc62c0475"
+            },
+            {
+                "degree": "V7",
+                "scale_degree": "5",
+                "chord_notes_degree": [
+                    "5",
+                    "7",
+                    "2",
+                    "4"
+                ],
+                "id": "029924ab-c3a9-471b-b5e1-2a72df840cce"
+            }
+        ],
+        "id": "8b02d753-9ef7-4c96-9ec9-7c7e186a8e15"
+    },
+    {
+        "name": "I7 - IV9 Funk",
+        "chords": [
+            {
+                "degree": "I7",
+                "scale_degree": "1",
+                "chord_notes_degree": [
+                    "1",
+                    "3",
+                    "5",
+                    "b7"
+                ],
+                "id": "ffd996d4-22c7-4570-a9dc-b2113c08d76d"
+            },
+            {
+                "degree": "IV9",
+                "scale_degree": "4",
+                "chord_notes_degree": [
+                    "4",
+                    "6",
+                    "1",
+                    "b3",
+                    "5"
+                ],
+                "id": "8efba14f-86e8-444c-9ff9-7c8d0906691b"
+            }
+        ],
+        "id": "58a94a47-9bd5-4239-82f5-34c575610d8f"
+    },
+    {
+        "name": "I7 - bVII9 Vamp",
+        "chords": [
+            {
+                "degree": "I7",
+                "scale_degree": "1",
+                "chord_notes_degree": [
+                    "1",
+                    "3",
+                    "5",
+                    "b7"
+                ],
+                "id": "b53b0e80-db90-42f7-ba9c-8ebea5c85ee5"
+            },
+            {
+                "degree": "\u266dVII9",
+                "scale_degree": "\u266d7",
+                "chord_notes_degree": [
+                    "b7",
+                    "2",
+                    "4",
+                    "6",
+                    "1"
+                ],
+                "id": "37f919af-56ba-45f5-acbe-456e6b7304f0"
+            }
+        ],
+        "id": "a12efc7a-5bff-422c-99d0-facd29ce36a9"
+    },
+    {
+        "name": "I7 - IV7 - V7 - bVI7",
+        "chords": [
+            {
+                "degree": "I7",
+                "scale_degree": "1",
+                "chord_notes_degree": [
+                    "1",
+                    "3",
+                    "5",
+                    "b7"
+                ],
+                "id": "e3cb0770-9ce2-43e1-b99c-dade0cf79227"
+            },
+            {
+                "degree": "IV7",
+                "scale_degree": "4",
+                "chord_notes_degree": [
+                    "4",
+                    "6",
+                    "1",
+                    "b3"
+                ],
+                "id": "9577a4db-c2a2-4bdc-8c07-b50ae19bd1c5"
+            },
+            {
+                "degree": "V7",
+                "scale_degree": "5",
+                "chord_notes_degree": [
+                    "5",
+                    "7",
+                    "2",
+                    "4"
+                ],
+                "id": "ec5f8331-22f6-4e6d-8d2a-3db83d44679b"
+            },
+            {
+                "degree": "\u266dVI7",
+                "scale_degree": "\u266d6",
+                "chord_notes_degree": [
+                    "\u266d6",
+                    "1",
+                    "\u266d3",
+                    "\u266d5"
+                ],
+                "id": "d5ac36d3-697a-4890-963d-c1a28b483d50"
+            }
+        ],
+        "id": "c4291f19-5d7f-4d61-9b01-281010fd5793"
+    },
+    {
+        "name": "I7 - bII7 Tension",
+        "chords": [
+            {
+                "degree": "I7",
+                "scale_degree": "1",
+                "chord_notes_degree": [
+                    "1",
+                    "3",
+                    "5",
+                    "b7"
+                ],
+                "id": "39b95044-d46c-4339-b461-b04c6e7ea0c7"
+            },
+            {
+                "degree": "\u266dII7",
+                "scale_degree": "\u266d2",
+                "chord_notes_degree": [
+                    "\u266d2",
+                    "4",
+                    "\u266d6",
+                    "\u266d1"
+                ],
+                "id": "55c69824-67aa-4141-adec-98c5481f167b"
+            }
+        ],
+        "id": "68769252-ef61-4796-b707-5189ed31b59d"
+    },
+    {
+        "name": "I7 - IV7 - I7 Groove",
+        "chords": [
+            {
+                "degree": "I7",
+                "scale_degree": "1",
+                "chord_notes_degree": [
+                    "1",
+                    "3",
+                    "5",
+                    "b7"
+                ],
+                "id": "3219caa7-d43d-4ba8-b150-55f3f0dff0f1"
+            },
+            {
+                "degree": "IV7",
+                "scale_degree": "4",
+                "chord_notes_degree": [
+                    "4",
+                    "6",
+                    "1",
+                    "b3"
+                ],
+                "id": "18a03a64-afb4-43a8-bf3e-d9b339a78256"
+            },
+            {
+                "degree": "I7",
+                "scale_degree": "1",
+                "chord_notes_degree": [
+                    "1",
+                    "3",
+                    "5",
+                    "b7"
+                ],
+                "id": "577cab9d-f56d-432b-a87a-17f8948254d5"
+            }
+        ],
+        "id": "f60ed8a8-7fec-4e50-a154-42ab59c7e705"
+    },
+    {
+        "name": "I7 - IV7 - V7 - IV7",
+        "chords": [
+            {
+                "degree": "I7",
+                "scale_degree": "1",
+                "chord_notes_degree": [
+                    "1",
+                    "3",
+                    "5",
+                    "b7"
+                ],
+                "id": "9b4bd6d6-d9f1-4bd7-bda7-7334fa982e3e"
+            },
+            {
+                "degree": "IV7",
+                "scale_degree": "4",
+                "chord_notes_degree": [
+                    "4",
+                    "6",
+                    "1",
+                    "b3"
+                ],
+                "id": "b23e7d48-ee35-46df-95d9-05ac92fcfd28"
+            },
+            {
+                "degree": "V7",
+                "scale_degree": "5",
+                "chord_notes_degree": [
+                    "5",
+                    "7",
+                    "2",
+                    "4"
+                ],
+                "id": "a885313d-7ca5-4c4e-9357-17bb5707bbc5"
+            },
+            {
+                "degree": "IV7",
+                "scale_degree": "4",
+                "chord_notes_degree": [
+                    "4",
+                    "6",
+                    "1",
+                    "b3"
+                ],
+                "id": "08912844-2b0a-4941-a4e6-a926b2ffad66"
+            }
+        ],
+        "id": "985212ad-9d80-48a3-b7dd-dafa60d1ceb1"
+    }
+]

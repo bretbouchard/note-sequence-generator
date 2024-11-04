@@ -1,0 +1,56 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model Sequence {
+  id            String   @id @default(cuid())
+  key           String
+  scaleDegrees  String  // Store as JSON string
+  durations     String  // Store as JSON string
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model ChordProgression {
+  id          String        @id @default(cuid())
+  name        String
+  chords      ChordInProgression[]
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+}
+
+model ChordInProgression {
+  id                  String           @id @default(cuid())
+  degree              String           // e.g., "ii7", "V7", "Imaj7"
+  scaleDegree         String           // e.g., "2", "5", "1"
+  chordNotesDegree    String           // Store as JSON string
+  progression         ChordProgression  @relation(fields: [progressionId], references: [id])
+  progressionId       String
+  order              Int              // For maintaining chord order
+  createdAt          DateTime         @default(now())
+  updatedAt          DateTime         @updatedAt
+}
+
+model ChordTemplate {
+  id          String   @id @default(cuid())
+  name        String
+  category    String   // e.g., "basic", "jazz", "latin"
+  pattern     String   // Store as JSON string
+  description String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model ProgressionTemplate {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  pattern     String   // Store as JSON string of ProgressionTemplateRule
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+} 
