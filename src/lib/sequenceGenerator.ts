@@ -1,224 +1,144 @@
-import { Scale, ChordProgression, NoteTemplate, NoteSequence, MelodyTemplate, ChordTones } from '@/types/music'
+import type { Scale, ChordProgression, NoteTemplate, NoteSequence } from '@/types/music'
+import { validateSequenceInput } from './sequenceValidator'
 
-const normalizeWeights = (weights: number[]): number[] => {
-  const sum = weights.reduce((acc, val) => acc + val, 0)
-  return weights.map(w => w / sum)
-}
-
-const selectFromWeightedArray = (items: number[], weights: number[]): number => {
-  const normalizedWeights = normalizeWeights(weights)
-  const random = Math.random()
-  let sum = 0
-  
-  for (let i = 0; i < normalizedWeights.length; i++) {
-    sum += normalizedWeights[i]
-    if (random <= sum) return items[i]
-  }
-  
-  return items[items.length - 1]
-}
-
-// Generate rhythm patterns based on chord duration
-const generateRhythm = (chordDuration: number): number[] => {
-  const patterns = [
-    [1, 1, 1, 1],           // Quarter notes
-    [2, 2],                 // Half notes
-    [1.5, 1.5, 1],         // Dotted quarters + quarter
-    [1, 0.5, 0.5, 1, 1],   // Syncopated pattern
-    [3, 1],                // Dotted half + quarter
-  ]
-  
-  // Select a random pattern that fits the duration
-  const validPatterns = patterns.filter(p => 
-    p.reduce((sum, val) => sum + val, 0) === chordDuration
-  )
-  
-  return validPatterns[Math.floor(Math.random() * validPatterns.length)] || [chordDuration]
-}
-
-// Get scale degrees that are consonant with the current chord
-const getConsonantDegrees = (chordDegree: number): number[] => {
-  // Basic chord tones (1-3-5 relative to chord root)
-  const chordTones = [0, 2, 4].map(interval => ((chordDegree + interval - 1) % 7) + 1)
-  
-  // Add approach tones and passing tones
-  const approachTones = [
-    ((chordDegree - 2 + 7) % 7) + 1,  // One scale degree below
-    ((chordDegree) % 7) + 1,          // One scale degree above
-  ]
-  
-  return [...new Set([...chordTones, ...approachTones])]
-}
-
-// Melodic pattern generators
-const melodicPatterns = {
-  stepwise: (chord: ChordTones) => {
-    const scale = getScaleFromChord(chord)
-    const direction = Math.random() > 0.5 ? 1 : -1
-    return [chord.root, chord.root + direction, chord.root + direction * 2]
-  },
-
-  arpeggioUp: (chord: ChordTones) => {
-    return [chord.root, chord.third, chord.fifth]
-  },
-
-  arpeggioDown: (chord: ChordTones) => {
-    return [chord.fifth, chord.third, chord.root]
-  },
-
-  approach: (chord: ChordTones) => {
-    // Approach notes to chord tones
-    return [chord.root - 1, chord.root, chord.third - 1, chord.third]
-  },
-
-  enclosure: (chord: ChordTones) => {
-    // Surround chord tones with upper and lower neighbors
-    return [chord.root + 1, chord.root - 1, chord.root]
-  }
-}
-
-const generateMelodyForChord = (
-  chord: ChordTones,
-  template: MelodyTemplate,
-  duration: number
-) => {
-  const notes: number[] = []
-  let remainingDuration = duration
-
-  while (remainingDuration > 0) {
-    // Select pattern based on weights
-    const pattern = selectWeightedPattern(template)
-    const patternNotes = pattern.generator(chord)
-    
-    // Apply constraints
-    const constrainedNotes = applyConstraints(patternNotes, template.constraints)
-    
-    notes.push(...constrainedNotes)
-    remainingDuration -= patternNotes.length
-  }
-
-  return notes
-}
-
-// Helper function to get scale from chord
-const getScaleFromChord = (chord: ChordTones): number[] => {
-  return [
-    chord.root,
-    chord.third,
-    chord.fifth,
-    ...(chord.seventh ? [chord.seventh] : []),
-    ...(chord.tensions || [])
-  ]
-}
-
-// Helper function to select weighted pattern
-const selectWeightedPattern = (template: MelodyTemplate) => {
-  const patterns = template.patterns
-  const weights = patterns.map(pattern => {
-    switch (pattern.name) {
-      case 'stepwise': return template.weights.stepwise
-      case 'arpeggioUp': 
-      case 'arpeggioDown': return template.weights.arpeggios
-      case 'approach': return template.weights.approach
-      default: return 1
-    }
-  })
-
-  const index = selectFromWeightedArray(
-    patterns.map((_, i) => i),
-    weights
-  )
-  return patterns[index]
-}
-
-// Helper function to apply constraints
-const applyConstraints = (notes: number[], constraints: MelodyTemplate['constraints']) => {
-  return notes.map(note => {
-    // Keep note within preferred range
-    if (note < constraints.preferredRange.low) {
-      return note + 7 // Octave up
-    }
-    if (note > constraints.preferredRange.high) {
-      return note - 7 // Octave down
-    }
-    return note
-  })
-}
-
-export const generateSequence = async ({
-  key,
-  scale,
-  chordProgression,
-  template,
-  providedDurations
-}: {
+interface GeneratorOptions {
   key: string
   scale: Scale
   chordProgression: ChordProgression
-  template: { probabilities: NoteTemplate[] }
-  providedDurations?: number[]
-}): Promise<NoteSequence> => {
+  template: NoteTemplate
+}
+
+export const generateSequence = async (options: GeneratorOptions): Promise<NoteSequence> => {
+  const startTime = performance.now()
+  
+  // Validate inputs
+  if (!validateSequenceInput(options.key, options.scale, options.chordProgression, options.template)) {
+    throw new Error('Invalid sequence parameters')
+  }
+
+  // Generate base sequence
+  const sequence = await generateBaseSequence(options)
+  
+  // Apply rhythmic patterns
+  const rhythmicSequence = applyRhythmicPatterns(sequence, options.chordProgression)
+  
+  // Apply template probabilities
+  const finalSequence = applyTemplateProbabilities(rhythmicSequence, options.template)
+
+  // Performance logging
+  const endTime = performance.now()
+  console.log(`Sequence generation time: ${endTime - startTime}ms`)
+
+  return finalSequence
+}
+
+const generateBaseSequence = async (options: GeneratorOptions): Promise<NoteSequence> => {
+  const { scale, chordProgression } = options
   const scaleDegrees: number[] = []
   const durations: number[] = []
-  
-  // Use provided durations or defaults
-  const chordDurations = providedDurations || chordProgression.durations
 
-  // Generate notes based on template probabilities and chord progression
-  for (let i = 0; i < chordProgression.degrees.length; i++) {
-    const chordDuration = chordDurations[i]
-    const chordDegree = chordProgression.degrees[i]
-    const currentTemplate = template.probabilities[i]
+  // Generate notes based on chord progression
+  chordProgression.degrees.forEach((chordDegree, index) => {
+    const chordDuration = chordProgression.durations[index]
+    const chordNotes = generateChordNotes(chordDegree, scale)
     
-    // Create chord tones object
-    const chord: ChordTones = {
-      root: chordDegree,
-      third: ((chordDegree + 2) % 7) || 7,
-      fifth: ((chordDegree + 4) % 7) || 7
-    }
-    
-    // Get consonant scale degrees for this chord
-    const consonantDegrees = getConsonantDegrees(chordDegree)
-    
-    // Generate rhythm for this chord
-    const rhythmPattern = generateRhythm(chordDuration)
-    
-    // Generate notes for each rhythm value
-    rhythmPattern.forEach(duration => {
-      let selectedDegree: number
+    scaleDegrees.push(...chordNotes)
+    durations.push(...generateNoteDurations(chordDuration))
+  })
 
-      // Check if currentTemplate exists and has preferredNotes
-      if (currentTemplate?.preferredNotes && currentTemplate.preferredNotes.length > 0) {
-        // Use template's preferred notes if available
-        const noteIndex = Math.floor(Math.random() * currentTemplate.preferredNotes.length)
-        const relativeDegree = currentTemplate.preferredNotes[noteIndex]
-        selectedDegree = ((chordDegree + relativeDegree - 1) % 7) || 7
-      } else {
-        // Fall back to probability-based selection
-        const degrees = template.probabilities.map(p => p.scaleDegree)
-        const weights = template.probabilities.map(p => {
-          let weight = p.weight || 1 // Default weight if not specified
-          if (consonantDegrees.includes(p.scaleDegree)) {
-            weight *= 1.5
-          }
-          if ([chord.root, chord.third, chord.fifth].includes(p.scaleDegree)) {
-            weight *= 1.2
-          }
-          return weight
-        })
-        
-        selectedDegree = selectFromWeightedArray(degrees, weights)
-      }
-      
-      scaleDegrees.push(selectedDegree)
-      durations.push(duration)
-    })
-  }
-  
   return {
     scaleDegrees,
     durations,
-    key,
-    id: Math.random().toString(36).substr(2, 9)
+    key: options.key
+  }
+}
+
+const generateChordNotes = (chordDegree: number, scale: Scale): number[] => {
+  // Generate chord tones based on scale degree
+  const chordTones = [
+    scale.degrees[(chordDegree - 1) % 7], // Root
+    scale.degrees[(chordDegree + 1) % 7], // Third
+    scale.degrees[(chordDegree + 3) % 7], // Fifth
+  ]
+
+  return chordTones
+}
+
+const generateNoteDurations = (totalDuration: number): number[] => {
+  const patterns = [
+    [1, 1, 1, 1], // Quarter notes
+    [2, 2],       // Half notes
+    [3, 1],       // Dotted half + quarter
+    [1, 3],       // Quarter + dotted half
+    [4],          // Whole note
+  ]
+
+  // Select a random pattern that fits the total duration
+  const validPatterns = patterns.filter(pattern => 
+    pattern.reduce((sum, val) => sum + val, 0) === totalDuration
+  )
+
+  return validPatterns[Math.floor(Math.random() * validPatterns.length)] || [totalDuration]
+}
+
+const applyRhythmicPatterns = (sequence: NoteSequence, progression: ChordProgression): NoteSequence => {
+  // Apply more complex rhythmic patterns while maintaining chord structure
+  const newDurations: number[] = []
+  let currentIndex = 0
+
+  progression.durations.forEach(chordDuration => {
+    const notesInChord = sequence.scaleDegrees.slice(
+      currentIndex,
+      currentIndex + 3
+    ).length
+
+    const rhythmPattern = generateRhythmicPattern(chordDuration, notesInChord)
+    newDurations.push(...rhythmPattern)
+    currentIndex += notesInChord
+  })
+
+  return {
+    ...sequence,
+    durations: newDurations
+  }
+}
+
+const generateRhythmicPattern = (totalDuration: number, noteCount: number): number[] => {
+  const patterns: { [key: number]: number[][] } = {
+    4: [ // Whole note duration
+      [1, 1, 1, 1],     // Quarter notes
+      [2, 1, 1],        // Half + two quarters
+      [1, 2, 1],        // Quarter + half + quarter
+      [1, 1, 2],        // Two quarters + half
+      [2, 2],           // Two halves
+      [3, 1],           // Dotted half + quarter
+      [1, 3],           // Quarter + dotted half
+      [4]               // Whole note
+    ]
+  }
+
+  const availablePatterns = patterns[totalDuration] || [[totalDuration]]
+  return availablePatterns[Math.floor(Math.random() * availablePatterns.length)]
+}
+
+const applyTemplateProbabilities = (sequence: NoteSequence, template: NoteTemplate): NoteSequence => {
+  const newScaleDegrees = sequence.scaleDegrees.map(degree => {
+    const random = Math.random()
+    let cumulativeProbability = 0
+
+    // Find the new scale degree based on template probabilities
+    for (const prob of template.probabilities) {
+      cumulativeProbability += prob.weight
+      if (random <= cumulativeProbability) {
+        return prob.scaleDegree
+      }
+    }
+
+    return degree
+  })
+
+  return {
+    ...sequence,
+    scaleDegrees: newScaleDegrees
   }
 } 

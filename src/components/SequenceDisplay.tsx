@@ -3,10 +3,15 @@
 import { useEffect, useRef, useState, useCallback } from 'react'
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
+import { debounce } from 'lodash'
 import type { NoteSequence } from '@/types/music'
 import ChordTemplates from '@/data/ChordTemplates'
-import { Draggable } from '@/components/Draggable'
-import { debounce } from 'lodash'
+
+interface ChordBoundary {
+  id: string
+  position: number
+  duration: number
+}
 
 interface Props {
   sequence: NoteSequence
@@ -17,18 +22,19 @@ interface Props {
     scale_degree: string
     chord_notes_degree: string[]
     id: string
-    template?: string  // Add template ID reference
+    template?: string
   }>
-  onDurationsChange?: (durations: number[]) => void  // Add this prop
+  onDurationsChange?: (durations: number[]) => void
 }
 
-interface ChordBoundary {
-  id: string
-  position: number
-  duration: number
-}
-
-export function SequenceDisplay({ sequence, showChords = false, showNotes = true, chordProgression, onDurationsChange }: Props) {
+// Change to default export
+export default function SequenceDisplay({
+  sequence,
+  showChords = true,
+  showNotes = true,
+  chordProgression,
+  onDurationsChange
+}: Props) {
   const containerRef = useRef<HTMLDivElement>(null)
   const sceneRef = useRef<THREE.Scene | null>(null)
   const cameraRef = useRef<THREE.PerspectiveCamera | null>(null)

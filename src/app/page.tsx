@@ -2,13 +2,13 @@
 
 import { useState, useEffect, useCallback } from 'react'
 import { debounce } from 'lodash'
-import { ChordProgressionSelector } from '@/components/ChordProgressionSelector'
-import { SequenceDisplay } from '@/components/SequenceDisplay'
+import ChordProgressionSelector from '@/components/ChordProgressionSelector'
+import SequenceDisplay from '@/components/SequenceDisplay'
 import ChordTemplateSelector from '@/components/ChordTemplateSelector'
+import ProgressionTemplateSelector from '@/components/ProgressionTemplateSelector'
 import type { ChordProgressionData } from '@/types/music'
 import chordProgressionsData from '@/data/ChordProgressions.json'
 import ChordTemplates from '@/data/ChordTemplates'
-import { ProgressionTemplateSelector } from '@/components/ProgressionTemplateSelector'
 import type { ProgressionTemplateRule } from '@/types/templates'
 
 export default function Home() {
@@ -162,104 +162,66 @@ export default function Home() {
   }, [])
 
   return (
-    <div className="min-h-screen bg-[#111827]">
-      <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <h1 className="text-3xl font-bold text-white mb-8">
-          NoteSequence Generator
-        </h1>
+    <main className="min-h-screen flex">
+      {/* Left Sidebar */}
+      <div className="w-80 min-h-screen bg-gray-900 p-4 flex flex-col gap-6 overflow-y-auto">
+        {/* Chord Progression Section */}
+        <section className="space-y-4">
+          <h2 className="text-xl font-semibold text-white">Chord Progression</h2>
+          <ChordProgressionSelector
+            progressions={progressions}
+            onProgressionSelect={handleProgressionSelect}
+          />
+        </section>
 
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr,2fr] gap-8">
-          <div className="space-y-6">
-            <ChordProgressionSelector
-              progressions={progressions}
-              onProgressionSelect={handleProgressionSelect}
-            />
+        {/* Template Section */}
+        <section className="space-y-4">
+          <h2 className="text-xl font-semibold text-white">Templates</h2>
+          <ChordTemplateSelector
+            templates={ChordTemplates}
+            onTemplateSelect={handleTemplateSelect}
+          />
+          <ProgressionTemplateSelector
+            onTemplateSelect={handleProgressionTemplateSelect}
+          />
+        </section>
+
+        {/* Controls Section */}
+        <section className="space-y-4">
+          <h2 className="text-xl font-semibold text-white">Controls</h2>
+          <div className="flex flex-col gap-2">
+            <label className="text-sm text-gray-300">
+              <input
+                type="checkbox"
+                checked={showChords}
+                onChange={(e) => setShowChords(e.target.checked)}
+                className="mr-2"
+              />
+              Show Chords
+            </label>
+            <label className="text-sm text-gray-300">
+              <input
+                type="checkbox"
+                checked={showNotes}
+                onChange={(e) => setShowNotes(e.target.checked)}
+                className="mr-2"
+              />
+              Show Notes
+            </label>
           </div>
-
-          <div className="space-y-8">
-            <div className="flex items-center gap-4">
-              <button
-                onClick={() => setShowChords(!showChords)}
-                className={`px-3 py-1 rounded-md text-sm font-medium transition-colors ${
-                  showChords 
-                    ? 'bg-indigo-600 text-white' 
-                    : 'bg-gray-700 text-gray-400 hover:bg-gray-600'
-                }`}
-              >
-                Chords
-              </button>
-
-              <button
-                onClick={() => setShowNotes(!showNotes)}
-                className={`px-3 py-1 rounded-md text-sm font-medium transition-colors ${
-                  showNotes 
-                    ? 'bg-indigo-600 text-white' 
-                    : 'bg-gray-700 text-gray-400 hover:bg-gray-600'
-                }`}
-              >
-                Notes
-              </button>
-
-              <button
-                onClick={handleRegenerate}
-                className="px-3 py-1 bg-green-600 hover:bg-green-500 text-white rounded-md text-sm font-medium"
-              >
-                Regenerate
-              </button>
-            </div>
-
-            <div className="h-[600px] bg-[#111827] rounded-lg overflow-hidden">
-              {sequence ? (
-                <SequenceDisplay 
-                  sequence={sequence}
-                  showChords={showChords}
-                  showNotes={showNotes}
-                  chordProgression={selectedProgression?.chords}
-                  onDurationsChange={handleDurationsChange}
-                />
-              ) : (
-                <div className="h-full flex items-center justify-center text-gray-300 text-lg font-medium">
-                  Generate a sequence to view visualization
-                </div>
-              )}
-            </div>
-
-            {selectedProgression && (
-              <div className="bg-gray-800 rounded-lg p-4 mb-4">
-                <h3 className="text-lg font-medium text-white mb-4">
-                  Progression Template
-                </h3>
-                <ProgressionTemplateSelector
-                  onTemplateSelect={handleProgressionTemplateSelect}
-                  currentTemplate={progressionTemplate?.id}
-                />
-              </div>
-            )}
-
-            {selectedProgression && (
-              <div className="bg-gray-800 rounded-lg p-4">
-                <h3 className="text-lg font-medium text-white mb-4">
-                  Chord Templates
-                </h3>
-                <div className="space-y-6">
-                  {selectedProgression.chords.map((chord) => (
-                    <div key={chord.id} className="border-b border-gray-700 pb-4">
-                      <div className="text-gray-300 mb-2">
-                        {chord.degree} ({chord.scale_degree})
-                      </div>
-                      <ChordTemplateSelector
-                        chordId={chord.id}
-                        currentTemplate={chordTemplates[chord.id]}
-                        onTemplateSelect={handleTemplateSelect}
-                      />
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-          </div>
-        </div>
+        </section>
       </div>
-    </div>
+
+      {/* Main Content Area */}
+      <div className="flex-1 relative">
+        <SequenceDisplay
+          sequence={sequence}
+          showChords={showChords}
+          showNotes={showNotes}
+          chordProgression={selectedProgression?.chords}
+          onDurationsChange={handleDurationsChange}
+        />
+      </div>
+    </main>
   )
 } 

@@ -3,12 +3,13 @@
 import { useState } from 'react'
 import type { ChordProgressionData } from '@/types/music'
 
-type Props = {
+interface Props {
   progressions: ChordProgressionData[]
   onProgressionSelect: (progression: ChordProgressionData) => void
 }
 
-export function ChordProgressionSelector({ progressions, onProgressionSelect }: Props) {
+// Change to default export
+export default function ChordProgressionSelector({ progressions, onProgressionSelect }: Props) {
   const [selectedKey, setSelectedKey] = useState<string>('C')
   const [selectedScale, setSelectedScale] = useState<string>('Major')
   const [selectedProgression, setSelectedProgression] = useState<ChordProgressionData | null>(null)
