@@ -1,28 +1,60 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
-import { debounce } from 'lodash'
+import { useState, useCallback } from 'react'
+import PianoRollView from '@/components/PianoRollView'
+import TemplateManager from '@/components/TemplateManager'
 import ChordProgressionSelector from '@/components/ChordProgressionSelector'
-import SequenceDisplay from '@/components/SequenceDisplay'
-import ChordTemplateSelector from '@/components/ChordTemplateSelector'
-import ProgressionTemplateSelector from '@/components/ProgressionTemplateSelector'
-import type { ChordProgressionData } from '@/types/music'
-import chordProgressionsData from '@/data/ChordProgressions.json'
-import ChordTemplates from '@/data/ChordTemplates'
-import type { ProgressionTemplateRule } from '@/types/templates'
+import type { NoteTemplate, RhythmTemplate, NoteSequence, ChordProgression } from '@/types/music'
 
 export default function Home() {
-  const [selectedProgression, setSelectedProgression] = useState<ChordProgressionData | null>(null)
-  const [sequence, setSequence] = useState<any>(null)
+  const [sequence, setSequence] = useState<NoteSequence | null>(null)
+  const [error, setError] = useState<string | null>(null)
+  const [selectedProgression, setSelectedProgression] = useState<ChordProgression | null>(null)
+  const [isGenerating, setIsGenerating] = useState(false)
+  const [lastGenerationTime, setLastGenerationTime] = useState(0)
+  const [currentTemplates, setCurrentTemplates] = useState<{
+    note: NoteTemplate[],
+    rhythm: RhythmTemplate[]
+  }>({
+    note: [{
+      id: 'default-note',
+      scaleDegrees: [1, 2, 3, 4, 5],
+      weights: [1, 1, 1, 1, 1],
+      repetition: { startBar: 0, duration: 4 },
+      direction: 'forward',
+      behavior: 'continuous',
+      useChordTones: false
+    }],
+    rhythm: [{
+      id: 'default-rhythm',
+      durations: [1, 1, 1, 1],
+      templateDuration: 4,
+      repetition: { startBar: 0, duration: 4 },
+      behavior: 'continuous'
+    }]
+  })
   const [showChords, setShowChords] = useState(true)
   const [showNotes, setShowNotes] = useState(true)
-  const [chordTemplates, setChordTemplates] = useState<Record<string, string>>({})
-  const [progressions, setProgressions] = useState<ChordProgressionData[]>([])
-  const [progressionTemplate, setProgressionTemplate] = useState<ProgressionTemplateRule | null>(null)
 
-  // Immediate sequence generation without debounce
-  const generateSequence = async (progression: ChordProgressionData) => {
+  const generateSequence = useCallback(async (
+    progression: ChordProgression,
+    noteTemplates: NoteTemplate[] = currentTemplates.note,
+    rhythmTemplates: RhythmTemplate[] = currentTemplates.rhythm
+  ) => {
+    const now = Date.now()
+    if (now - lastGenerationTime < 1000 || isGenerating) return
+    
     try {
+      setIsGenerating(true)
+      setError(null)
+      setLastGenerationTime(now)
+      
+      console.log('Generating sequence:', {
+        progression,
+        noteTemplates,
+        rhythmTemplates
+      })
+      
       const response = await fetch('/api/sequence/generate', {
         method: 'POST',
         headers: {
@@ -34,193 +66,141 @@ export default function Home() {
             degrees: [1, 2, 3, 4, 5, 6, 7],
             intervals: [0, 2, 4, 5, 7, 9, 11]
           },
-          chordProgression: {
-            degrees: progression.chords.map(c => {
-              const degree = c.scale_degree.replace(/[^\d]/g, '');
-              return parseInt(degree) || 1;
-            }),
-            durations: progression.chords.map(chord => {
-              const template = chordTemplates[chord.id]
-              if (template) {
-                const templatePattern = Object.values(ChordTemplates)
-                  .flat()
-                  .find(t => t.id === template)
-                return templatePattern?.pattern.duration || 4
-              }
-              return 4
-            })
-          },
+          chordProgression: progression,
           template: {
-            probabilities: progression.chords.map((chord) => ({
-              scaleDegree: parseInt(chord.scale_degree.replace(/[^\d]/g, '')) || 1,
-              weight: 1 / progression.chords.length
-            }))
+            sequenceLength: progression.chords.length * 4,
+            noteTemplates,
+            rhythmTemplates,
+            seeds: {
+              noteSeed: Math.floor(Math.random() * 1000000),
+              rhythmSeed: Math.floor(Math.random() * 1000000)
+            }
           }
         })
       })
 
+      if (!response.ok) {
+        const errorData = await response.json()
+        throw new Error(errorData.message || 'Failed to generate sequence')
+      }
+
       const data = await response.json()
-      if (data.sequence) {
-        setSequence(data.sequence)
+      console.log('Generated sequence:', data)
+      
+      if (!data.scaleDegrees || !data.durations) {
+        throw new Error('Invalid sequence data received')
       }
-    } catch (error) {
-      console.error('Failed to generate sequence:', error)
+      
+      setSequence(data)
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to generate sequence')
+      console.error('Sequence generation error:', err)
+    } finally {
+      setIsGenerating(false)
     }
-  }
+  }, [isGenerating, lastGenerationTime])
 
-  // Debounced version only for duration changes
-  const debouncedGenerateSequence = useCallback(
-    debounce((progression: ChordProgressionData) => {
-      generateSequence(progression)
-    }, 500),
-    [chordTemplates]
-  )
-
-  // Handle progression selection - immediate update
-  const handleProgressionSelect = async (progression: ChordProgressionData) => {
+  // Handle progression selection
+  const handleProgressionSelect = useCallback((progression: ChordProgression) => {
+    console.log('Progression selected:', progression)
     setSelectedProgression(progression)
-    await generateSequence(progression)
-  }
+    generateSequence(progression, currentTemplates.note, currentTemplates.rhythm)
+  }, [generateSequence, currentTemplates])
 
-  // Handle regenerate - immediate update
-  const handleRegenerate = async () => {
-    if (!selectedProgression) return
-    await generateSequence(selectedProgression)
-  }
-
-  // Handle template selection - immediate update
-  const handleTemplateSelect = async (chordId: string, templateId: string) => {
-    const newTemplates = {
-      ...chordTemplates,
-      [chordId]: templateId
-    }
-    setChordTemplates(newTemplates)
+  // Handle template changes
+  const handleTemplateChange = useCallback((noteTemplates: NoteTemplate[], rhythmTemplates: RhythmTemplate[]) => {
+    console.log('Template change:', { noteTemplates, rhythmTemplates, currentProgression: selectedProgression })
     
+    setCurrentTemplates({
+      note: noteTemplates,
+      rhythm: rhythmTemplates
+    })
+    
+    // Only generate new sequence if we have a progression
     if (selectedProgression) {
-      await generateSequence(selectedProgression)
+      // Use the stored progression, not a new one
+      generateSequence(selectedProgression, noteTemplates, rhythmTemplates)
     }
-  }
-
-  // Handle duration changes - debounced
-  const handleDurationsChange = (newDurations: number[]) => {
-    if (!selectedProgression) return
-    debouncedGenerateSequence(selectedProgression)
-  }
-
-  // Handle progression template selection
-  const handleProgressionTemplateSelect = (template: ProgressionTemplateRule) => {
-    setProgressionTemplate(template)
-    if (selectedProgression) {
-      // Apply the template pattern to all chords
-      const newTemplates = { ...chordTemplates }
-      const { templateIds, applyRule, repeatCount = 1 } = template.pattern
-      
-      selectedProgression.chords.forEach((chord, index) => {
-        let templateIndex: number
-        
-        switch (applyRule) {
-          case 'sequential':
-            templateIndex = index % templateIds.length
-            break
-          case 'alternate':
-            templateIndex = index % 2
-            break
-          case 'random':
-            templateIndex = Math.floor(Math.random() * templateIds.length)
-            break
-          case 'repeat':
-            templateIndex = Math.floor(index / repeatCount) % templateIds.length
-            break
-          default:
-            templateIndex = 0
-        }
-        
-        newTemplates[chord.id] = templateIds[templateIndex]
-      })
-      
-      setChordTemplates(newTemplates)
-      generateSequence(selectedProgression)
-    }
-  }
-
-  // Fetch progressions on mount
-  useEffect(() => {
-    const fetchProgressions = async () => {
-      try {
-        const response = await fetch('/api/progressions')
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`)
-        }
-        const data = await response.json()
-        setProgressions(data)
-      } catch (error) {
-        console.error('Failed to fetch progressions:', error)
-      }
-    }
-
-    fetchProgressions()
-  }, [])
+  }, [selectedProgression, generateSequence])
 
   return (
-    <main className="min-h-screen flex">
-      {/* Left Sidebar */}
-      <div className="w-80 min-h-screen bg-gray-900 p-4 flex flex-col gap-6 overflow-y-auto">
-        {/* Chord Progression Section */}
-        <section className="space-y-4">
-          <h2 className="text-xl font-semibold text-white">Chord Progression</h2>
+    <main className="min-h-screen bg-gray-900 text-white p-4">
+      <div className="space-y-6">
+        {/* Header Controls - All Inline */}
+        <div className="flex items-center gap-4">
+          {/* Display Controls */}
+          <div className="flex gap-2">
+            <button
+              onClick={() => setShowChords(!showChords)}
+              className={`px-2 py-1 rounded text-sm ${
+                showChords 
+                  ? 'bg-blue-600 hover:bg-blue-500' 
+                  : 'bg-gray-700 hover:bg-gray-600'
+              }`}
+            >
+              {showChords ? 'Hide Chords' : 'Show Chords'}
+            </button>
+            <button
+              onClick={() => setShowNotes(!showNotes)}
+              className={`px-2 py-1 rounded text-sm ${
+                showNotes 
+                  ? 'bg-blue-600 hover:bg-blue-500' 
+                  : 'bg-gray-700 hover:bg-gray-600'
+              }`}
+            >
+              {showNotes ? 'Hide Notes' : 'Show Notes'}
+            </button>
+          </div>
+
+          {/* Divider */}
+          <div className="h-6 w-px bg-gray-700"></div>
+
+          {/* Chord Progression Selector */}
           <ChordProgressionSelector
-            progressions={progressions}
+            defaultProgression="I-VI-II-V"
             onProgressionSelect={handleProgressionSelect}
           />
-        </section>
+        </div>
 
-        {/* Template Section */}
-        <section className="space-y-4">
-          <h2 className="text-xl font-semibold text-white">Templates</h2>
-          <ChordTemplateSelector
-            templates={ChordTemplates}
-            onTemplateSelect={handleTemplateSelect}
+        {/* Piano Roll View */}
+        <div className="h-[60vh] bg-gray-800 rounded-lg overflow-hidden">
+          <PianoRollView
+            sequence={sequence}
+            showChords={showChords}
+            showNotes={showNotes}
+            onSequenceUpdate={setSequence}
           />
-          <ProgressionTemplateSelector
-            onTemplateSelect={handleProgressionTemplateSelect}
-          />
-        </section>
+        </div>
 
-        {/* Controls Section */}
-        <section className="space-y-4">
-          <h2 className="text-xl font-semibold text-white">Controls</h2>
-          <div className="flex flex-col gap-2">
-            <label className="text-sm text-gray-300">
-              <input
-                type="checkbox"
-                checked={showChords}
-                onChange={(e) => setShowChords(e.target.checked)}
-                className="mr-2"
-              />
-              Show Chords
-            </label>
-            <label className="text-sm text-gray-300">
-              <input
-                type="checkbox"
-                checked={showNotes}
-                onChange={(e) => setShowNotes(e.target.checked)}
-                className="mr-2"
-              />
-              Show Notes
-            </label>
+        {/* Error and Loading States */}
+        {error && (
+          <div className="p-4 bg-red-900/50 rounded-md">
+            <p className="text-red-200">{error}</p>
           </div>
-        </section>
-      </div>
+        )}
+        {isGenerating && (
+          <div className="p-4 bg-blue-900/50 rounded-md">
+            <p className="text-blue-200">Generating sequence...</p>
+          </div>
+        )}
 
-      {/* Main Content Area */}
-      <div className="flex-1 relative">
-        <SequenceDisplay
-          sequence={sequence}
-          showChords={showChords}
-          showNotes={showNotes}
-          chordProgression={selectedProgression?.chords}
-          onDurationsChange={handleDurationsChange}
-        />
+        {/* Templates in Two Columns */}
+        <div className="grid grid-cols-2 gap-6">
+          <div className="space-y-4">
+            <TemplateManager 
+              type="note"
+              onTemplateChange={handleTemplateChange}
+              currentTemplates={currentTemplates}
+            />
+          </div>
+          <div className="space-y-4">
+            <TemplateManager 
+              type="rhythm"
+              onTemplateChange={handleTemplateChange}
+              currentTemplates={currentTemplates}
+            />
+          </div>
+        </div>
       </div>
     </main>
   )

@@ -1,115 +1,95 @@
 'use client'
 
-import { useState } from 'react'
-import type { ChordProgressionData } from '@/types/music'
+import { useState, useEffect, useCallback } from 'react'
+import type { ChordProgression } from '@/types/music'
 
 interface Props {
-  progressions: ChordProgressionData[]
-  onProgressionSelect: (progression: ChordProgressionData) => void
+  defaultProgression?: string
+  onProgressionSelect: (progression: ChordProgression) => void
 }
 
-// Change to default export
-export default function ChordProgressionSelector({ progressions, onProgressionSelect }: Props) {
-  const [selectedKey, setSelectedKey] = useState<string>('C')
-  const [selectedScale, setSelectedScale] = useState<string>('Major')
-  const [selectedProgression, setSelectedProgression] = useState<ChordProgressionData | null>(null)
+export default function ChordProgressionSelector({ defaultProgression = 'I-VI-II-V', onProgressionSelect }: Props) {
+  const [progressions, setProgressions] = useState<ChordProgression[]>([])
+  const [selectedId, setSelectedId] = useState<string>('')
+  const [isLoading, setIsLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
 
-  const handleProgressionChange = (progressionId: string) => {
-    const progression = progressions.find(p => p.id === progressionId)
-    if (progression) {
-      setSelectedProgression(progression)
-      onProgressionSelect(progression)
+  // Fetch chord progressions and set default
+  useEffect(() => {
+    const fetchProgressions = async () => {
+      try {
+        setIsLoading(true)
+        const response = await fetch('/api/progressions')
+        if (!response.ok) throw new Error('Failed to fetch progressions')
+        const data = await response.json()
+        setProgressions(data)
+        
+        // Set default progression only if no progression is selected
+        if (!selectedId) {
+          const defaultProg = data.find(p => p.name.includes(defaultProgression))
+          if (defaultProg) {
+            setSelectedId(defaultProg.id)
+            onProgressionSelect(defaultProg)
+          }
+        }
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'Failed to load progressions')
+      } finally {
+        setIsLoading(false)
+      }
     }
-  }
+
+    fetchProgressions()
+  }, [defaultProgression, onProgressionSelect, selectedId])
+
+  const handleSelect = useCallback((id: string) => {
+    const selected = progressions.find(p => p.id === id)
+    if (selected && id !== selectedId) {
+      console.log('Selecting new progression:', selected.name)
+      setSelectedId(id)
+      onProgressionSelect(selected)
+    }
+  }, [progressions, selectedId, onProgressionSelect])
 
   return (
-    <div className="flex flex-col gap-4 w-full max-w-xl">
-      <div className="grid grid-cols-3 gap-4">
-        {/* Key Selection */}
-        <div className="flex flex-col gap-2">
-          <label 
-            htmlFor="key-select" 
-            className="text-sm font-medium text-gray-700"
-          >
-            Key
-          </label>
+    <div className="flex gap-4 items-center">
+      {isLoading ? (
+        <div className="text-sm text-gray-400">Loading...</div>
+      ) : error ? (
+        <div className="text-sm text-red-400">{error}</div>
+      ) : (
+        <>
           <select
-            id="key-select"
-            value={selectedKey}
-            onChange={(e) => setSelectedKey(e.target.value)}
-            className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-gray-900"
+            value={selectedId}
+            onChange={(e) => handleSelect(e.target.value)}
+            className="w-48 bg-gray-700 text-white rounded px-2 py-1"
           >
-            {['C', 'C#/Db', 'D', 'D#/Eb', 'E', 'F', 'F#/Gb', 'G', 'G#/Ab', 'A', 'A#/Bb', 'B'].map((key) => (
-              <option key={key} value={key} className="text-gray-900">
-                {key}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        {/* Scale Selection */}
-        <div className="flex flex-col gap-2">
-          <label 
-            htmlFor="scale-select" 
-            className="text-sm font-medium text-gray-700"
-          >
-            Scale
-          </label>
-          <select
-            id="scale-select"
-            value={selectedScale}
-            onChange={(e) => setSelectedScale(e.target.value)}
-            className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-gray-900"
-          >
-            {['Major', 'Natural Minor', 'Harmonic Minor', 'Melodic Minor', 'Dorian', 'Phrygian', 'Lydian', 'Mixolydian', 'Locrian'].map((scale) => (
-              <option key={scale} value={scale} className="text-gray-900">
-                {scale}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        {/* Progression Selection */}
-        <div className="flex flex-col gap-2">
-          <label 
-            htmlFor="progression-select" 
-            className="text-sm font-medium text-gray-700"
-          >
-            Progression
-          </label>
-          <select
-            id="progression-select"
-            value={selectedProgression?.id || ''}
-            onChange={(e) => handleProgressionChange(e.target.value)}
-            className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-gray-900"
-          >
-            <option value="" className="text-gray-900">Select a progression</option>
+            <option value="">Select progression</option>
             {progressions.map((progression) => (
-              <option key={progression.id} value={progression.id} className="text-gray-900">
+              <option key={progression.id} value={progression.id}>
                 {progression.name}
               </option>
             ))}
           </select>
-        </div>
-      </div>
 
-      {/* Display selected progression details */}
-      {selectedProgression && (
-        <div className="mt-4 p-4 bg-gray-50 rounded-md">
-          <h3 className="text-lg font-medium text-gray-900 mb-2">
-            Selected Progression: {selectedProgression.name}
-          </h3>
-          <div className="flex gap-2 flex-wrap">
-            {selectedProgression.chords.map((chord) => (
-              <div 
-                key={chord.id}
-                className="px-3 py-2 bg-white rounded-md shadow-sm border border-gray-200 text-gray-900"
-              >
-                {chord.degree}
-              </div>
-            ))}
-          </div>
-        </div>
+          {selectedId && (
+            <div className="flex gap-1">
+              {progressions
+                .find(p => p.id === selectedId)
+                ?.chords.map((chord, index) => (
+                  <div
+                    key={index}
+                    className="px-2 py-1 bg-gray-700 rounded text-xs flex flex-col items-center min-w-[3rem]"
+                  >
+                    <span className="font-medium">{chord.degree}</span>
+                    <span className="text-[0.65rem] text-gray-400">
+                      {chord.chord_notes_degree.join(',')}
+                    </span>
+                  </div>
+                ))}
+            </div>
+          )}
+        </>
       )}
     </div>
   )

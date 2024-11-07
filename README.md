@@ -1,36 +1,83 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Note Sequence Generator
+
+A visual tool for creating and manipulating musical note sequences based on scale degrees and chord progressions. This project is designed to be a module in a larger music composition system.
+
+## Overview
+
+The Note Sequence Generator is a specialized tool that works with scale degrees (1-7) rather than absolute notes (C, D, E, etc.). This approach makes it easier to:
+- Work with patterns that can be transposed to any key
+- Visualize relationships between notes and chord progressions
+- Create reusable melodic and rhythmic templates
+
+**Note:** This tool is focused on pattern visualization and generation - it does not produce audio output.
+
+## Features
+
+- Visual piano-roll style interface
+- Chord progression selection and visualization
+- Template-based sequence generation
+  - Note templates with scale degrees
+  - Rhythm templates with customizable durations and rests
+  - Pattern direction controls (forward, backward, ping-pong)
+  - Pattern behavior options (continuous, restart per chord)
+  - Chord tone mode for arpeggiated patterns
+
+## Technical Stack
+
+- **Frontend Framework:** Next.js 15
+- **Styling:** TailwindCSS
+- **Language:** TypeScript
+- **State Management:** React Hooks
+- **Build Tools:** npm
 
 ## Getting Started
 
-First, run the development server:
-
+1. Install dependencies:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Run the development server:
+```bash
+npm run dev
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Open [http://localhost:3000](http://localhost:3000) in your browser
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Project Structure
 
-## Learn More
+```
+src/
+├── app/              # Next.js app router
+├── components/       # React components
+│   ├── PianoRollView.tsx
+│   ├── TemplateEditor.tsx
+│   └── ...
+├── lib/             # Core logic
+│   └── sequenceGeneratorServer.ts
+└── types/           # TypeScript definitions
+    └── music.ts
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Future Integration
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+This tool is designed to be a module in a larger music composition system. It will integrate with:
+- Audio playback modules
+- DAW integration
+- Music notation systems
+- Pattern libraries
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Contributing
 
-## Deploy on Vercel
+This project is part of a larger music composition toolkit. If you're interested in contributing, please:
+1. Fork the repository
+2. Create a feature branch
+3. Submit a pull request
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## License
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+[Your chosen license]
+
+## Related Projects
+
+[Links to related projects or the main project this will be part of]

@@ -1,368 +1,229 @@
 'use client'
 
-import { useEffect, useRef, useState, useCallback } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
-import { debounce } from 'lodash'
 import type { NoteSequence } from '@/types/music'
-import ChordTemplates from '@/data/ChordTemplates'
-
-interface ChordBoundary {
-  id: string
-  position: number
-  duration: number
-}
+import PianoRollView from './PianoRollView'
 
 interface Props {
-  sequence: NoteSequence
-  showChords?: boolean
-  showNotes?: boolean
-  chordProgression?: Array<{
-    degree: string
-    scale_degree: string
-    chord_notes_degree: string[]
-    id: string
-    template?: string
-  }>
-  onDurationsChange?: (durations: number[]) => void
+  sequence: NoteSequence | null
+  showChords: boolean
+  showNotes: boolean
+  template?: any
 }
 
-// Change to default export
-export default function SequenceDisplay({
-  sequence,
-  showChords = true,
-  showNotes = true,
-  chordProgression,
-  onDurationsChange
-}: Props) {
+export default function SequenceDisplay({ sequence, showChords, showNotes, template }: Props) {
+  const [viewMode, setViewMode] = useState<'3d' | 'piano-roll'>('3d')
   const containerRef = useRef<HTMLDivElement>(null)
   const sceneRef = useRef<THREE.Scene | null>(null)
-  const cameraRef = useRef<THREE.PerspectiveCamera | null>(null)
   const rendererRef = useRef<THREE.WebGLRenderer | null>(null)
+  const cameraRef = useRef<THREE.PerspectiveCamera | null>(null)
   const controlsRef = useRef<OrbitControls | null>(null)
-  const frameRef = useRef<number>()
-  const mountedRef = useRef(false)
-  const [isViewCentered, setIsViewCentered] = useState(true)
-  const [boundaries, setBoundaries] = useState<ChordBoundary[]>([])
-  const [isDragging, setIsDragging] = useState(false)
-
-  // Create debounced duration change handler
-  const debouncedDurationChange = useCallback(
-    debounce((newDurations: number[]) => {
-      if (onDurationsChange && !isDragging) {  // Only trigger when not dragging
-        onDurationsChange(newDurations)
-      }
-    }, 1000),
-    [onDurationsChange, isDragging]
-  )
-
-  // Update boundaries when dragging ends
-  const handleDragEnd = (index: number, newPosition: number) => {
-    setIsDragging(false)
-    setBoundaries(prev => {
-      const newBoundaries = [...prev]
-      const prevBoundary = newBoundaries[index - 1]
-      const currentBoundary = newBoundaries[index]
-      const nextBoundary = newBoundaries[index + 1]
-
-      if (prevBoundary) {
-        prevBoundary.duration = newPosition - prevBoundary.position
-      }
-      if (currentBoundary) {
-        currentBoundary.position = newPosition
-        if (nextBoundary) {
-          currentBoundary.duration = nextBoundary.position - newPosition
-        }
-      }
-
-      // Only trigger duration change when dragging ends
-      const newDurations = newBoundaries.map(b => b.duration)
-      debouncedDurationChange(newDurations)
-
-      return newBoundaries
-    })
-  }
 
   // Initialize Three.js scene
   useEffect(() => {
-    if (!containerRef.current || mountedRef.current) return
+    if (!containerRef.current || viewMode !== '3d') return
 
     console.log('Initializing Three.js scene')
 
-    // Clear any existing canvas elements
-    while (containerRef.current.firstChild) {
-      containerRef.current.removeChild(containerRef.current.firstChild)
-    }
-
     // Create scene
     const scene = new THREE.Scene()
-    sceneRef.current = scene
-    scene.background = new THREE.Color('#111827')
+    scene.background = new THREE.Color(0x000000)
 
-    // Create camera with centered view
+    // Create camera
     const camera = new THREE.PerspectiveCamera(
-      45,
-      containerRef.current.clientWidth / containerRef.current.clientHeight,
+      75,
+      (window.innerWidth - 320) / window.innerHeight,
       0.1,
       1000
     )
-    cameraRef.current = camera
-    camera.position.set(0, 5, 25)  // Adjusted for better initial view
-    camera.lookAt(0, 0, 0)
+    camera.position.set(0, 5, 15)
 
     // Create renderer
-    const renderer = new THREE.WebGLRenderer({ 
-      antialias: true,
-      alpha: true,
-      powerPreference: 'high-performance'
-    })
-    renderer.setPixelRatio(window.devicePixelRatio)
-    renderer.setSize(containerRef.current.clientWidth, containerRef.current.clientHeight)
+    const renderer = new THREE.WebGLRenderer({ antialias: true })
+    renderer.setSize(window.innerWidth - 320, window.innerHeight)
     containerRef.current.appendChild(renderer.domElement)
-    rendererRef.current = renderer
 
     // Add lights
-    const ambientLight = new THREE.AmbientLight(0xffffff, 1.2)
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.5)
     scene.add(ambientLight)
-
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 1.5)
-    directionalLight.position.set(5, 5, 5)
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 1)
+    directionalLight.position.set(0, 1, 1)
     scene.add(directionalLight)
 
-    const pointLight = new THREE.PointLight(0xffffff, 1.0)
-    pointLight.position.set(-5, 5, 5)
-    scene.add(pointLight)
-
-    // Add controls with change handler
+    // Add controls
     const controls = new OrbitControls(camera, renderer.domElement)
-    controls.enableRotate = true
-    controls.enablePan = true
-    controls.enableZoom = true
-    controls.addEventListener('change', () => {
-      setIsViewCentered(false)
-    })
+    controls.enableDamping = true
+
+    // Store refs
+    sceneRef.current = scene
+    cameraRef.current = camera
+    rendererRef.current = renderer
     controlsRef.current = controls
 
+    // Handle window resize
+    const handleResize = () => {
+      if (!camera || !renderer) return
+      camera.aspect = (window.innerWidth - 320) / window.innerHeight
+      camera.updateProjectionMatrix()
+      renderer.setSize(window.innerWidth - 320, window.innerHeight)
+    }
+    window.addEventListener('resize', handleResize)
+
     // Animation loop
+    let animationFrameId: number
     const animate = () => {
-      frameRef.current = requestAnimationFrame(animate)
+      animationFrameId = requestAnimationFrame(animate)
       controls.update()
       renderer.render(scene, camera)
     }
     animate()
 
-    // Handle resize
-    const handleResize = () => {
-      if (!containerRef.current || !camera || !renderer) return
-      const width = containerRef.current.clientWidth
-      const height = containerRef.current.clientHeight
-      camera.aspect = width / height
-      camera.updateProjectionMatrix()
-      renderer.setSize(width, height)
-    }
-    window.addEventListener('resize', handleResize)
-
-    mountedRef.current = true
-
     // Cleanup
     return () => {
       console.log('Cleaning up Three.js scene')
-      mountedRef.current = false
-      if (frameRef.current) {
-        cancelAnimationFrame(frameRef.current)
-      }
-      if (controlsRef.current) {
-        controlsRef.current.dispose()
-      }
-      if (rendererRef.current) {
-        rendererRef.current.dispose()
-      }
-      if (sceneRef.current) {
-        sceneRef.current.clear()
-      }
       window.removeEventListener('resize', handleResize)
-
-      // Remove canvas element
-      if (containerRef.current?.firstChild) {
-        containerRef.current.removeChild(containerRef.current.firstChild)
+      cancelAnimationFrame(animationFrameId)
+      renderer.dispose()
+      if (containerRef.current?.contains(renderer.domElement)) {
+        containerRef.current.removeChild(renderer.domElement)
       }
+      scene.clear()
+      sceneRef.current = null
+      rendererRef.current = null
+      cameraRef.current = null
+      controlsRef.current = null
     }
-  }, []) // Empty dependency array - only run once
+  }, [viewMode]) // Add viewMode to dependencies
 
-  // Initialize boundaries
+  // Update visualization when sequence changes
   useEffect(() => {
-    if (!chordProgression) return
-    
-    let currentPosition = 0
-    const newBoundaries = chordProgression.map(chord => {
-      const boundary = {
-        id: chord.id,
-        position: currentPosition,
-        duration: 4 // Default duration
-      }
-      currentPosition += boundary.duration
-      return boundary
+    if (viewMode !== '3d' || !sequence || !sceneRef.current || !rendererRef.current || !cameraRef.current) return
+
+    console.log('Updating visualization:', { 
+      sequence, 
+      showChords, 
+      showNotes,
+      hasChordProgression: sequence?.chordProgression ? 'yes' : 'no'
     })
-    
-    setBoundaries(newBoundaries)
-  }, [chordProgression])
 
-  // Helper to get template pattern for a chord
-  const getChordPattern = (chordId: string) => {
-    // Default to whole note template if none specified
-    const defaultTemplate = ChordTemplates.basic[0]
-    
-    const chord = chordProgression?.find(c => c.id === chordId)
-    if (!chord?.template) return defaultTemplate.pattern
+    const scene = sceneRef.current
+    const camera = cameraRef.current
+    const renderer = rendererRef.current
 
-    // Find specified template
-    for (const category of Object.values(ChordTemplates)) {
-      const template = category.find(t => t.id === chord.template)
-      if (template) return template.pattern
-    }
-
-    return defaultTemplate.pattern
-  }
-
-  // Update visualization when sequence or visibility changes
-  useEffect(() => {
-    if (!sceneRef.current || !sequence) {
-      console.log('Missing scene or sequence:', { scene: !!sceneRef.current, sequence })
-      return
-    }
-
-    console.log('Updating visualization with sequence:', sequence)
-
-    // Clear existing meshes
-    const existingMeshes = sceneRef.current.children.filter(
-      child => child instanceof THREE.Mesh
-    )
-    existingMeshes.forEach(mesh => {
-      sceneRef.current?.remove(mesh)
-      if (mesh instanceof THREE.Mesh) {
-        mesh.geometry.dispose()
-        if (mesh.material instanceof THREE.Material) {
-          mesh.material.dispose()
+    // Clear existing visualization
+    while(scene.children.length > 0) { 
+      const obj = scene.children[0]
+      if (obj instanceof THREE.Mesh) {
+        obj.geometry.dispose()
+        if (obj.material instanceof THREE.Material) {
+          obj.material.dispose()
         }
       }
-    })
-
-    // Add chord visualization if enabled
-    if (showChords && chordProgression) {
-      let chordStartTime = 0
-      const totalDuration = sequence.durations.reduce((sum, d) => sum + d, 0)
-
-      chordProgression.forEach((chord) => {
-        const pattern = getChordPattern(chord.id)
-        
-        // Create meshes for each note in the pattern
-        pattern.notePattern.forEach((note, noteIndex) => {
-          note.degrees.forEach((relativeDegree) => {
-            // Convert relative degree to actual scale degree
-            const baseDegree = parseInt(chord.scale_degree.replace(/[^\d]/g, '')) || 1
-            const actualDegree = ((baseDegree + relativeDegree - 1) % 7) || 7
-
-            const chordGeometry = new THREE.BoxGeometry(
-              note.durations[0] * (40 / totalDuration),
-              0.8,
-              0.2
-            )
-            
-            const chordMaterial = new THREE.MeshPhongMaterial({
-              color: new THREE.Color(0x4a5568),
-              transparent: true,
-              opacity: 0.6,
-              shininess: 0
-            })
-            
-            const chordMesh = new THREE.Mesh(chordGeometry, chordMaterial)
-            
-            const x = (chordStartTime + note.durations.reduce((sum, d, i) => i < noteIndex ? sum + d : sum, 0)) 
-              * (40 / totalDuration) - 20
-            const y = (actualDegree - 4) * 1.2
-            chordMesh.position.set(x, y, -0.5)
-            
-            sceneRef.current?.add(chordMesh)
-          })
-        })
-        
-        chordStartTime += pattern.duration
-      })
+      scene.remove(obj)
     }
 
-    // Create notes visualization if enabled
-    if (showNotes) {
-      let currentTime = 0
-      const totalDuration = sequence.durations.reduce((sum, d) => sum + d, 0)
+    // Re-add lights
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.5)
+    scene.add(ambientLight)
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 1)
+    directionalLight.position.set(0, 1, 1)
+    scene.add(directionalLight)
 
-      sequence.scaleDegrees.forEach((degree, index) => {
-        const duration = sequence.durations[index]
-        
-        const geometry = new THREE.BoxGeometry(
-          duration * (40 / totalDuration),
-          0.8,
-          0.2  // Reduced thickness
-        )
-        
+    // Add visualization elements
+    const noteGeometries: THREE.Mesh[] = []
+    const chordGeometries: THREE.Mesh[] = []
+
+    if (showChords && sequence.chordProgression) {
+      console.log('Adding chord visualization:', sequence.chordProgression)
+      sequence.chordProgression.degrees.forEach((degree, index) => {
+        const geometry = new THREE.BoxGeometry(2, 0.5, 2)
         const material = new THREE.MeshPhongMaterial({
-          color: new THREE.Color().setHSL(degree / 7, 0.8, 0.6),
-          emissive: new THREE.Color().setHSL(degree / 7, 0.8, 0.3),
-          shininess: 50,
-          specular: new THREE.Color(0x444444)
+          color: new THREE.Color().setHSL(degree / 7, 0.6, 0.4),
+          transparent: true,
+          opacity: 0.6
         })
         
         const mesh = new THREE.Mesh(geometry, material)
+        const spacing = 3
+        mesh.position.set(index * spacing - (sequence.chordProgression!.degrees.length * spacing / 2), -2, 0)
         
-        const x = currentTime * (40 / totalDuration) - 20
-        const y = (degree - 4) * 1.2
-        mesh.position.set(x, y, 0)
-        
-        sceneRef.current?.add(mesh)
-        
-        currentTime += duration
+        scene.add(mesh)
+        chordGeometries.push(mesh)
       })
     }
 
-    // Adjust camera
-    if (cameraRef.current) {
-      const zoom = 25
-      cameraRef.current.position.z = zoom
-      cameraRef.current.lookAt(0, 0, 0)
+    if (showNotes) {
+      console.log('Adding note visualization:', sequence.scaleDegrees)
+      sequence.scaleDegrees.forEach((degree, index) => {
+        const geometry = new THREE.SphereGeometry(0.2, 32, 32)
+        const material = new THREE.MeshPhongMaterial({
+          color: new THREE.Color().setHSL(degree / 7, 0.7, 0.5)
+        })
+        
+        const mesh = new THREE.Mesh(geometry, material)
+        const angle = (index / sequence.scaleDegrees.length) * Math.PI * 2
+        const radius = 5
+        mesh.position.set(
+          Math.cos(angle) * radius,
+          degree - 4,
+          Math.sin(angle) * radius
+        )
+        
+        scene.add(mesh)
+        noteGeometries.push(mesh)
+      })
     }
-  }, [sequence, showChords, showNotes, chordProgression])
 
-  // Handle recenter
-  const handleRecenter = () => {
-    if (cameraRef.current) {
-      cameraRef.current.position.set(0, 5, 25)
-      cameraRef.current.lookAt(0, 0, 0)
-      setIsViewCentered(true)
+    // Animation loop for the objects
+    let animationFrameId: number
+    const animate = () => {
+      animationFrameId = requestAnimationFrame(animate)
+      
+      chordGeometries.forEach((mesh) => {
+        mesh.rotation.y += 0.005
+      })
+
+      noteGeometries.forEach((mesh, index) => {
+        const duration = sequence.durations[index]
+        mesh.rotation.y += 0.01 * duration
+      })
+
+      renderer.render(scene, camera)
     }
-  }
+    animate()
+
+    return () => {
+      cancelAnimationFrame(animationFrameId)
+    }
+
+  }, [sequence, showChords, showNotes, viewMode])
 
   return (
-    <div className="relative w-full h-full">
-      {/* View Controls */}
-      {!isViewCentered && (
-        <div className="absolute top-4 right-4 flex gap-2 z-10">
-          <button
-            onClick={handleRecenter}
-            className="px-3 py-1 bg-indigo-600 hover:bg-indigo-500 text-white rounded-md text-sm font-medium"
-          >
-            Recenter
-          </button>
-        </div>
-      )}
+    <div className="relative w-full h-screen">
+      {/* View Toggle Button */}
+      <button
+        onClick={() => setViewMode(prev => prev === '3d' ? 'piano-roll' : '3d')}
+        className="absolute top-4 right-4 px-4 py-2 bg-gray-800 text-white rounded-md 
+                 hover:bg-gray-700 transition-colors z-10"
+      >
+        {viewMode === '3d' ? 'Switch to Piano Roll' : 'Switch to 3D View'}
+      </button>
 
-      {/* Canvas Container */}
-      <div 
-        ref={containerRef} 
-        className="w-full h-full"
-        style={{
-          position: 'relative',
-          overflow: 'hidden'
-        }}
-      />
+      {viewMode === '3d' ? (
+        <div 
+          ref={containerRef} 
+          className="w-full h-screen bg-gradient-to-b from-gray-900 to-black"
+          aria-label="Music sequence visualization"
+        />
+      ) : (
+        <PianoRollView
+          sequence={sequence}
+          showChords={showChords}
+          showNotes={showNotes}
+        />
+      )}
     </div>
   )
-} 
+}

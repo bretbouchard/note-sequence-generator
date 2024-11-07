@@ -8,11 +8,42 @@ export type ChordProgression = {
   durations: number[]  // Length of each chord
 }
 
-export type NoteTemplate = {
-  probabilities: {
-    scaleDegree: number
-    weight: number
-  }[]
+export type TriggerMode = 'chord' | 'self'
+
+export type PatternDirection = 'forward' | 'backward' | 'pingpong'
+export type PatternBehavior = 'continuous' | 'repeat-per-chord'
+
+export interface TemplateBase {
+  id: string
+  repetition: {
+    startBar: number
+    duration: number
+  }
+  behavior: PatternBehavior
+}
+
+export interface NoteTemplate extends TemplateBase {
+  scaleDegrees: number[]
+  weights: number[]
+  direction: PatternDirection
+  useChordTones: boolean
+}
+
+export interface RhythmTemplate extends TemplateBase {
+  durations: number[]
+  templateDuration: number
+  rests?: boolean[]  // Track which durations are rests
+  behavior: PatternBehavior
+}
+
+export type SequenceTemplate = {
+  sequenceLength: number  // Total bars
+  noteTemplates: NoteTemplate[]
+  rhythmTemplates: RhythmTemplate[]
+  seeds: {
+    noteSeed: number
+    rhythmSeed: number
+  }
 }
 
 export type NoteSequence = {
@@ -20,6 +51,7 @@ export type NoteSequence = {
   scaleDegrees: number[]  // Reference to scale degrees
   durations: number[]     // Rhythm values
   key?: string           // Optional - for display only
+  chordProgression?: ChordProgression
 }
 
 export type ChordProgressionData = {
@@ -69,4 +101,11 @@ export type MelodyTemplate = {
       high: number
     }
   }
+}
+
+export interface GeneratorOptions {
+  key: string
+  scale: Scale
+  template: SequenceTemplate
+  chordProgression?: ChordProgression
 } 

@@ -53,4 +53,24 @@ model ProgressionTemplate {
   pattern     String   // Store as JSON string of ProgressionTemplateRule
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+}
+
+model NoteTemplate {
+  id          String   @id @default(cuid())
+  name        String
+  scaleDegrees Json    // Store as JSON array
+  weights     Json     // Store as JSON array
+  repetition  Json     // Store as JSON object
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model RhythmTemplate {
+  id               String   @id @default(cuid())
+  name             String
+  durations        Json     // Store as JSON array
+  templateDuration Float
+  repetition       Json     // Store as JSON object
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
 } 
