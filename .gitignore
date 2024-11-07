@@ -3,7 +3,7 @@
 # dependencies
 /node_modules
 /.pnp
-.pnp.*
+.pnp.js
 .yarn/*
 !.yarn/patches
 !.yarn/plugins
@@ -31,6 +31,10 @@ yarn-error.log*
 
 # env files (can opt-in for commiting if needed)
 .env*
+.env*.local
+.env.development
+.env.test
+.env.production
 
 # vercel
 .vercel
@@ -42,3 +46,22 @@ next-env.d.ts
 directions.md
 .aider*
 .env
+
+# IDE
+.idea
+.vscode
+*.swp
+*.swo
+
+# project specific
+directions/updates.md
+TODO.md
+next.config.js
+!next.config.example.js
+jsconfig.json
+!jsconfig.example.json
+tsconfig.json
+!tsconfig.example.json
+package.json
+!package.example.json
+v0dev_prompt.md
