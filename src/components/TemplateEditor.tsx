@@ -2,7 +2,19 @@
 
 import { useState, useEffect } from 'react'
 import type { NoteTemplate, RhythmTemplate, PatternDirection, PatternBehavior } from '@/types/music'
-import DraggableNote from './DraggableNote'
+import DraggableValue from './DraggableValue'
+
+const DURATIONS = [0.25, 0.5, 1, 2, 4]
+const formatDuration = (value: number) => {
+  const fractions: Record<number, string> = {
+    0.25: '1/16',
+    0.5: '1/8',
+    1: '1/4',
+    2: '1/2',
+    4: '1'
+  }
+  return fractions[value] || value.toString()
+}
 
 interface Props {
   type: 'note' | 'rhythm'
@@ -12,25 +24,36 @@ interface Props {
   onCancel: () => void
 }
 
-type DurationOption = {
-  value: number
-  label: string
-}
-
-const durationOptions: DurationOption[] = [
-  { value: 0.25, label: '1/16' },
-  { value: 0.5, label: '1/8' },
-  { value: 1, label: '1/4' },
-  { value: 2, label: '1/2' },
-  { value: 4, label: '1' }
-]
-
 export default function TemplateEditor({ type, template, onSave, onUpdate, onCancel }: Props) {
   const [editedTemplate, setEditedTemplate] = useState<NoteTemplate | RhythmTemplate>(template)
 
+  // Log template updates
+  useEffect(() => {
+    console.log('TemplateEditor received new template:', template)
+  }, [template])
+
+  useEffect(() => {
+    console.log('TemplateEditor state updated:', editedTemplate)
+  }, [editedTemplate])
+
+  // Immediate local state update
   const updateTemplate = (newTemplate: NoteTemplate | RhythmTemplate) => {
+    console.log('Immediate template update:', newTemplate)
     setEditedTemplate(newTemplate)
-    onUpdate(newTemplate)
+    onUpdate(newTemplate) // Send update to parent immediately
+  }
+
+  // Handle option changes (like chord tones, direction, behavior)
+  const handleOptionChange = (
+    option: keyof (NoteTemplate & RhythmTemplate),
+    value: any
+  ) => {
+    console.log('Option change:', { option, value, current: editedTemplate })
+    const newTemplate = {
+      ...editedTemplate,
+      [option]: value
+    }
+    updateTemplate(newTemplate)
   }
 
   const handleDurationChange = (index: number, value: number) => {
@@ -46,7 +69,7 @@ export default function TemplateEditor({ type, template, onSave, onUpdate, onCan
 
   const toggleRest = (index: number) => {
     if (type === 'rhythm' && 'durations' in editedTemplate) {
-      const newRests = [...(editedTemplate.rests || editedTemplate.durations.map(() => false))]
+      const newRests = [...(editedTemplate.rests || [])]
       newRests[index] = !newRests[index]
       updateTemplate({
         ...editedTemplate,
@@ -57,21 +80,19 @@ export default function TemplateEditor({ type, template, onSave, onUpdate, onCan
 
   const handleNoteChange = (index: number, value: number) => {
     if (type === 'note' && 'scaleDegrees' in editedTemplate) {
-      const newTemplate = {
+      const newDegrees = [...editedTemplate.scaleDegrees]
+      newDegrees[index] = value
+      updateTemplate({
         ...editedTemplate,
-        scaleDegrees: editedTemplate.scaleDegrees.map(
-          (deg, i) => i === index ? value : deg
-        )
-      }
-      updateTemplate(newTemplate)
+        scaleDegrees: newDegrees
+      })
     } else if (type === 'rhythm' && 'durations' in editedTemplate) {
-      const newTemplate = {
+      const newDurations = [...editedTemplate.durations]
+      newDurations[index] = value
+      updateTemplate({
         ...editedTemplate,
-        durations: editedTemplate.durations.map(
-          (dur, i) => i === index ? value : dur
-        )
-      }
-      updateTemplate(newTemplate)
+        durations: newDurations
+      })
     }
   }
 
@@ -129,37 +150,44 @@ export default function TemplateEditor({ type, template, onSave, onUpdate, onCan
         <div className="flex flex-wrap gap-4">
           {type === 'note' && 'scaleDegrees' in editedTemplate ? (
             editedTemplate.scaleDegrees.map((degree, index) => (
-              <div key={index} className="relative">
-                <DraggableNote
+              <div key={index} className="relative flex flex-col items-center gap-2 pt-5">
+                <button
+                  type="button"
+                  onClick={() => removeStep(index)}
+                  className="absolute -top-2 -right-1 text-white hover:text-gray-200 text-sm font-bold"
+                >
+                  ×
+                </button>
+                <DraggableValue
                   value={degree}
                   index={index}
                   min={1}
                   max={7}
+                  step={1}
                   onChange={handleNoteChange}
                 />
-                <button
-                  type="button"
-                  onClick={() => removeStep(index)}
-                  className="absolute -top-2 -right-2 w-5 h-5 bg-red-600 rounded-full text-white text-xs flex items-center justify-center hover:bg-red-500"
-                >
-                  ×
-                </button>
               </div>
             ))
           ) : type === 'rhythm' && 'durations' in editedTemplate ? (
             editedTemplate.durations.map((duration, index) => (
-              <div key={index} className="relative flex flex-col gap-1 items-center">
-                <select
-                  value={duration}
-                  onChange={(e) => handleDurationChange(index, Number(e.target.value))}
-                  className="w-20 bg-gray-700 text-white rounded px-2 py-1 text-sm"
+              <div key={index} className="relative flex flex-col items-center gap-2 pt-5">
+                <button
+                  type="button"
+                  onClick={() => removeStep(index)}
+                  className="absolute -top-2 -right-1 text-white hover:text-gray-200 text-sm font-bold"
                 >
-                  {durationOptions.map((option) => (
-                    <option key={option.value} value={option.value}>
-                      {option.label}
-                    </option>
-                  ))}
-                </select>
+                  ×
+                </button>
+                <DraggableValue
+                  value={duration}
+                  index={index}
+                  min={0.25}
+                  max={4}
+                  step={DURATIONS.indexOf(duration) === -1 ? 1 : 
+                    DURATIONS[DURATIONS.indexOf(duration) + 1] || DURATIONS[0]}
+                  formatLabel={formatDuration}
+                  onChange={handleNoteChange}
+                />
                 <button
                   type="button"
                   onClick={() => toggleRest(index)}
@@ -170,13 +198,6 @@ export default function TemplateEditor({ type, template, onSave, onUpdate, onCan
                   }`}
                 >
                   Rest
-                </button>
-                <button
-                  type="button"
-                  onClick={() => removeStep(index)}
-                  className="absolute -top-2 -right-2 w-5 h-5 bg-red-600 rounded-full text-white text-xs flex items-center justify-center hover:bg-red-500"
-                >
-                  ×
                 </button>
               </div>
             ))
@@ -237,10 +258,10 @@ export default function TemplateEditor({ type, template, onSave, onUpdate, onCan
           <div className="space-y-1">
             <button
               type="button"
-              onClick={() => updateTemplate({
-                ...editedTemplate,
-                useChordTones: !editedTemplate.useChordTones
-              })}
+              onClick={() => {
+                console.log('Chord tones button clicked')
+                handleOptionChange('useChordTones', !editedTemplate.useChordTones)
+              }}
               className={`px-3 py-1 text-sm rounded ${
                 editedTemplate.useChordTones
                   ? 'bg-blue-600 text-white'

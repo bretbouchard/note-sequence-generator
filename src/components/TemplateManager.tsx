@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useCallback, useEffect } from 'react'
 import type { NoteTemplate, RhythmTemplate } from '@/types/music'
 import TemplateEditor from './TemplateEditor'
 
@@ -43,30 +43,26 @@ export default function TemplateManager({ type, onTemplateChange }: Props) {
     console.log('TemplateManager rhythmTemplates:', rhythmTemplates)
   }, [rhythmTemplates])
 
-  // Handle real-time template updates
-  const handleTemplateUpdate = (template: NoteTemplate | RhythmTemplate) => {
-    console.log('handleTemplateUpdate called with:', template)
+  // Handle template updates immediately
+  const handleTemplateUpdate = useCallback((template: NoteTemplate | RhythmTemplate) => {
+    console.log('Template update received:', template)
     
     if ('scaleDegrees' in template) {
       // Note template
-      console.log('Updating note template')
       const newTemplates = noteTemplates.map(t => 
         t.id === template.id ? template : t
       )
-      console.log('New note templates:', newTemplates)
       setNoteTemplates(newTemplates)
       onTemplateChange(newTemplates, rhythmTemplates)
     } else {
       // Rhythm template
-      console.log('Updating rhythm template')
       const newTemplates = rhythmTemplates.map(t => 
         t.id === template.id ? template : t
       )
-      console.log('New rhythm templates:', newTemplates)
       setRhythmTemplates(newTemplates)
       onTemplateChange(noteTemplates, newTemplates)
     }
-  }
+  }, [noteTemplates, rhythmTemplates, onTemplateChange])
 
   return (
     <div className="space-y-6">

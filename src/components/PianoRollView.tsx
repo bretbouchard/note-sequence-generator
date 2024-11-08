@@ -124,17 +124,18 @@ export default function PianoRollView({ sequence, showChords, showNotes, onSeque
         const duration = sequence.durations[index]
         const x = currentBeat * gridSize - scrollPosition.x
         const width = duration * gridSize - 2
-        const height = gridSize - 2
 
         if (degree === null) {
           // Draw rest
-          ctx.fillStyle = 'rgba(255, 255, 255, 0.2)'
-          ctx.fillRect(x, canvas.height - gridSize * 2, width, height)
+          ctx.fillStyle = 'rgba(100, 100, 100, 0.3)'
+          const restHeight = gridSize - 2
+          const restY = canvas.height - (4 * gridSize) // Draw rests in a consistent location
+          ctx.fillRect(x, restY, width, restHeight)
         } else {
           // Draw note
           const y = canvas.height - (degree * gridSize) + scrollPosition.y
           ctx.fillStyle = '#3B82F6'
-          ctx.fillRect(x, y, width, height)
+          ctx.fillRect(x, y, width, gridSize - 2)
         }
 
         currentBeat += duration
