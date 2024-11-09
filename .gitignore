@@ -65,3 +65,4 @@ tsconfig.json
 package.json
 !package.example.json
 v0dev_prompt.md
+priorities.md

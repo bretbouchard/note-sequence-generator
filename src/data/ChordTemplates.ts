@@ -10,6 +10,11 @@ const ChordTemplates: ChordTemplateCollection = {
         notePattern: [
           { degrees: [1, 3, 5], durations: [4] }
         ]
+      },
+      metadata: {
+        autoGenerate: true,
+        complexity: 1,
+        preferredTempo: 80
       }
     },
     {
@@ -23,6 +28,11 @@ const ChordTemplates: ChordTemplateCollection = {
           { degrees: [5], durations: [1] },
           { degrees: [1], durations: [1] }
         ]
+      },
+      metadata: {
+        autoGenerate: true,
+        complexity: 1,
+        preferredTempo: 80
       }
     },
     {
@@ -36,6 +46,11 @@ const ChordTemplates: ChordTemplateCollection = {
           { degrees: [1], durations: [1] },
           { degrees: [3], durations: [1] }
         ]
+      },
+      metadata: {
+        autoGenerate: true,
+        complexity: 1,
+        preferredTempo: 80
       }
     }
   ],
@@ -51,6 +66,12 @@ const ChordTemplates: ChordTemplateCollection = {
           { degrees: [3, 5], durations: [1] },
           { degrees: [1], durations: [1] }
         ]
+      },
+      metadata: {
+        autoGenerate: true,
+        complexity: 2,
+        preferredTempo: 120,
+        swingRatio: 0.67
       }
     },
     {
@@ -66,9 +87,29 @@ const ChordTemplates: ChordTemplateCollection = {
           { degrees: [5], durations: [1] },
           { degrees: [3], durations: [1] }
         ]
+      },
+      metadata: {
+        autoGenerate: true,
+        complexity: 2,
+        preferredTempo: 120,
+        swingRatio: 0.67
       }
     }
   ]
+}
+
+export const validateTemplate = (template: ChordTemplateCollection[keyof ChordTemplateCollection][number]) => {
+  const totalDuration = template.pattern.notePattern.reduce(
+    (sum, note) => sum + note.durations[0],
+    0
+  )
+  return totalDuration === template.pattern.duration
+}
+
+export const getActiveTemplates = () => {
+  return Object.values(ChordTemplates)
+    .flat()
+    .filter(template => validateTemplate(template))
 }
 
 export default ChordTemplates 

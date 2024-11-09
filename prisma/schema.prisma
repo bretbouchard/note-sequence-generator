@@ -4,7 +4,7 @@ generator client {
 
 datasource db {
   provider = "sqlite"
-  url      = "file:./dev.db"
+  url      = env("DATABASE_URL")
 }
 
 model Sequence {
@@ -16,24 +16,40 @@ model Sequence {
   updatedAt     DateTime @updatedAt
 }
 
+model ChordType {
+  id        String   @id @default(uuid())
+  name      String   // e.g., "Major 7th"
+  symbol    String   // e.g., "maj7"
+  intervals String   // Store as comma-separated string: "0,4,7,11"
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
 model ChordProgression {
-  id          String        @id @default(cuid())
-  name        String
-  chords      ChordInProgression[]
-  createdAt   DateTime      @default(now())
-  updatedAt   DateTime      @updatedAt
+  id        String               @id @default(uuid())
+  name      String
+  chords    ChordInProgression[]
+  isPreset  Boolean             @default(false)
+  category  String?
+  createdAt DateTime            @default(now())
+  updatedAt DateTime            @updatedAt
 }
 
 model ChordInProgression {
-  id                  String           @id @default(cuid())
-  degree              String           // e.g., "ii7", "V7", "Imaj7"
-  scaleDegree         String           // e.g., "2", "5", "1"
-  chordNotesDegree    String           // Store as JSON string
-  progression         ChordProgression  @relation(fields: [progressionId], references: [id])
-  progressionId       String
-  order              Int              // For maintaining chord order
-  createdAt          DateTime         @default(now())
-  updatedAt          DateTime         @updatedAt
+  id              String           @id @default(uuid())
+  progression     ChordProgression @relation(fields: [progressionId], references: [id])
+  progressionId   String
+  degree          String           // "Imaj7"
+  scaleDegree     String           // "1"
+  chordType       String           // "maj7"
+  duration        Float            // 4.0
+  position        Float            // 0.0
+  order           Int              // For maintaining chord order
+  chordNotesDegree String          // Store as comma-separated string: "1,3,5,7"
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+
+  @@index([progressionId])
 }
 
 model ChordTemplate {
@@ -56,21 +72,26 @@ model ProgressionTemplate {
 }
 
 model NoteTemplate {
-  id          String   @id @default(cuid())
-  name        String
-  scaleDegrees Json    // Store as JSON array
-  weights     Json     // Store as JSON array
-  repetition  Json     // Store as JSON object
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id           String   @id @default(uuid())
+  name         String
+  scaleDegrees String   // Store as comma-separated string: "1,2,3,4,5"
+  weights      String   // Store as comma-separated string: "1,1,1,1,1"
+  repetition   String   // Store as string: "{"startBar":0,"duration":4}"
+  direction    String   @default("forward")
+  behavior     String   @default("continuous")
+  useChordTones Boolean @default(false)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
 }
 
 model RhythmTemplate {
-  id               String   @id @default(cuid())
+  id               String   @id @default(uuid())
   name             String
-  durations        Json     // Store as JSON array
+  durations        String   // Store as comma-separated string: "1,1,1,1"
   templateDuration Float
-  repetition       Json     // Store as JSON object
+  repetition       String   // Store as string: "{"startBar":0,"duration":4}"
+  direction        String   @default("forward")
+  behavior         String   @default("continuous")
   createdAt        DateTime @default(now())
   updatedAt        DateTime @updatedAt
 } 

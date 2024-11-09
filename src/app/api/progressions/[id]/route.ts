@@ -1,13 +1,27 @@
 import { NextResponse } from 'next/server'
-import { prisma } from '@/lib/db'
+import { PrismaClient } from '@prisma/client'
+
+// Initialize Prisma client with global caching for development
+const globalForPrisma = global as unknown as { prisma: PrismaClient | undefined }
+const prisma = globalForPrisma.prisma ?? new PrismaClient()
+if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma
 
 export async function GET(
   request: Request,
-  { params }: { params: { id: string } }
+  context: { params: { id: string } }
 ) {
   try {
+    if (!context?.params?.id) {
+      return NextResponse.json(
+        { error: 'Missing progression ID' },
+        { status: 400 }
+      )
+    }
+
     const progression = await prisma.chordProgression.findUnique({
-      where: { id: params.id },
+      where: {
+        id: context.params.id
+      },
       include: {
         chords: {
           orderBy: {
@@ -18,21 +32,15 @@ export async function GET(
     })
 
     if (!progression) {
-      return NextResponse.json({ error: 'Progression not found' }, { status: 404 })
+      return NextResponse.json(
+        { error: 'Progression not found' },
+        { status: 404 }
+      )
     }
 
-    return NextResponse.json({
-      id: progression.id,
-      name: progression.name,
-      chords: progression.chords.map(chord => ({
-        id: chord.id,
-        degree: chord.degree,
-        scale_degree: chord.scaleDegree,
-        chord_notes_degree: JSON.parse(chord.chordNotesDegree)
-      }))
-    })
+    return NextResponse.json(progression)
   } catch (error) {
-    console.error('Error fetching progression:', error)
+    console.error('API Error:', error)
     return NextResponse.json(
       { error: 'Failed to fetch progression' },
       { status: 500 }
@@ -45,31 +53,32 @@ export async function PUT(
   { params }: { params: { id: string } }
 ) {
   try {
+    const segments = request.url.split('/')
+    const id = segments[segments.length - 1]
+
     const body = await request.json()
     const { name, chords } = body
 
     // Delete existing chords
     await prisma.chordInProgression.deleteMany({
-      where: { progressionId: params.id }
+      where: { progressionId: id }
     })
 
     // Update progression and create new chords
     const progression = await prisma.chordProgression.update({
-      where: { id: params.id },
+      where: { id },
       data: {
         name,
         chords: {
-          create: chords.map((chord: any, index: number) => ({
-            id: chord.id,
-            degree: chord.degree,
-            scaleDegree: chord.scale_degree,
-            chordNotesDegree: JSON.stringify(chord.chord_notes_degree),
-            order: index
-          }))
+          create: chords
         }
       },
       include: {
-        chords: true
+        chords: {
+          orderBy: {
+            order: 'asc'
+          }
+        }
       }
     })
 
@@ -88,14 +97,15 @@ export async function DELETE(
   { params }: { params: { id: string } }
 ) {
   try {
-    // Delete associated chords first
+    const segments = request.url.split('/')
+    const id = segments[segments.length - 1]
+
     await prisma.chordInProgression.deleteMany({
-      where: { progressionId: params.id }
+      where: { progressionId: id }
     })
 
-    // Delete the progression
     await prisma.chordProgression.delete({
-      where: { id: params.id }
+      where: { id }
     })
 
     return NextResponse.json({ success: true })

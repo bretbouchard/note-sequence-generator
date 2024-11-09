@@ -1,34 +1,88 @@
-import { NoteSequence, TransformOptions } from '@/types/music'
+import type { ChordProgression } from '@/types/progression'
+import type { NoteTemplate, RhythmTemplate } from '@/types/templates'
 
-export const transformSequence = (
-  sequence: NoteSequence,
-  options: TransformOptions
-): NoteSequence => {
-  const { type, value = 0 } = options
-  const newSequence = { ...sequence }
+interface GenerateSequenceParams {
+  progression: ChordProgression
+  noteTemplates: NoteTemplate[]
+  rhythmTemplates: RhythmTemplate[]
+}
 
-  switch (type) {
-    case 'reverse':
-      newSequence.scaleDegrees = [...sequence.scaleDegrees].reverse()
-      newSequence.durations = [...sequence.durations].reverse()
-      break
+export function generateSequence({
+  progression,
+  noteTemplates,
+  rhythmTemplates
+}: GenerateSequenceParams) {
+  console.log('=== Generate Sequence Called ===')
+  console.log('Input:', {
+    progression,
+    noteTemplates: noteTemplates.map(t => t.name),
+    rhythmTemplates: rhythmTemplates.map(t => t.name)
+  })
 
-    case 'invert':
-      const maxDegree = Math.max(...sequence.scaleDegrees)
-      newSequence.scaleDegrees = sequence.scaleDegrees.map(
-        degree => maxDegree - degree + 1
-      )
-      break
+  try {
+    if (!progression.chords?.length) {
+      console.error('No chords in progression')
+      return null
+    }
 
-    case 'transpose':
-      newSequence.scaleDegrees = sequence.scaleDegrees.map(
-        degree => ((degree + value - 1) % 7) + 1
-      )
-      break
+    if (!noteTemplates.length || !rhythmTemplates.length) {
+      console.error('Missing templates:', { noteTemplates, rhythmTemplates })
+      return null
+    }
 
-    default:
-      throw new Error(`Unknown transformation type: ${type}`)
+    // Select templates
+    const noteTemplate = noteTemplates[0]
+    const rhythmTemplate = rhythmTemplates[0]
+
+    console.log('Using templates:', {
+      note: noteTemplate.name,
+      rhythm: rhythmTemplate.name
+    })
+
+    // Generate sequence for each chord
+    const sequence = progression.chords.map((chord, index) => {
+      console.log(`Processing chord ${index}:`, chord)
+
+      // Parse chord notes
+      const chordNotes = chord.chordNotesDegree.split(',').map(Number)
+      console.log('Chord notes:', chordNotes)
+
+      // Parse template patterns
+      const scaleDegrees = noteTemplate.scaleDegrees.split(',').map(Number)
+      const durations = rhythmTemplate.durations.split(',').map(Number)
+
+      console.log('Template patterns:', { scaleDegrees, durations })
+
+      // Generate notes
+      const notes = scaleDegrees.map(degree => {
+        if (noteTemplate.useChordTones) {
+          return chordNotes.reduce((closest, note) => {
+            return Math.abs(note - degree) < Math.abs(closest - degree) ? note : closest
+          }, chordNotes[0])
+        }
+        return degree
+      })
+
+      console.log('Generated notes:', notes)
+
+      return {
+        chordIndex: index,
+        chord: chord.degree,
+        position: chord.position,
+        duration: chord.duration,
+        notes,
+        durations,
+        direction: noteTemplate.direction,
+        behavior: noteTemplate.behavior
+      }
+    })
+
+    console.log('=== Sequence Generation Complete ===')
+    console.log('Final sequence:', sequence)
+    return sequence
+
+  } catch (error) {
+    console.error('Error generating sequence:', error)
+    return null
   }
-
-  return newSequence
 } 

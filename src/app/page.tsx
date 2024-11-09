@@ -4,6 +4,7 @@ import { useState, useCallback } from 'react'
 import PianoRollView from '@/components/PianoRollView'
 import TemplateManager from '@/components/TemplateManager'
 import ChordProgressionSelector from '@/components/ChordProgressionSelector'
+import ChordProgressionManager from '@/components/ChordProgressionManager'
 import type { NoteTemplate, RhythmTemplate, NoteSequence, ChordProgression } from '@/types/music'
 
 export default function Home() {
@@ -125,42 +126,17 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-gray-900 text-white p-4">
-      <div className="space-y-6">
-        {/* Header Controls - All Inline */}
-        <div className="flex items-center gap-4">
-          {/* Display Controls */}
-          <div className="flex gap-2">
-            <button
-              onClick={() => setShowChords(!showChords)}
-              className={`px-2 py-1 rounded text-sm ${
-                showChords 
-                  ? 'bg-blue-600 hover:bg-blue-500' 
-                  : 'bg-gray-700 hover:bg-gray-600'
-              }`}
-            >
-              {showChords ? 'Hide Chords' : 'Show Chords'}
-            </button>
-            <button
-              onClick={() => setShowNotes(!showNotes)}
-              className={`px-2 py-1 rounded text-sm ${
-                showNotes 
-                  ? 'bg-blue-600 hover:bg-blue-500' 
-                  : 'bg-gray-700 hover:bg-gray-600'
-              }`}
-            >
-              {showNotes ? 'Hide Notes' : 'Show Notes'}
-            </button>
-          </div>
-
-          {/* Divider */}
-          <div className="h-6 w-px bg-gray-700"></div>
-
-          {/* Chord Progression Selector */}
-          <ChordProgressionSelector
-            defaultProgression="I-VI-II-V"
-            onProgressionSelect={handleProgressionSelect}
+      <div className="max-w-7xl mx-auto space-y-6">
+        {/* Chord Progression Section */}
+        <section>
+          <h2 className="text-xl font-bold mb-4">Chord Progression</h2>
+          <ChordProgressionManager
+            onProgressionChange={(progression) => {
+              // Handle progression change
+              console.log('Progression changed:', progression)
+            }}
           />
-        </div>
+        </section>
 
         {/* Piano Roll View */}
         <div className="h-[60vh] bg-gray-800 rounded-lg overflow-hidden">
